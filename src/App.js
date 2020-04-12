@@ -5,6 +5,7 @@ import './App.css';
 
 
 function App() {
+    fetch("https://fervent-ardinghelli-aa4089.netlify.com/.netlify/functions/create_game");
   return (
     <div className="App">
       <header className="App-header">
