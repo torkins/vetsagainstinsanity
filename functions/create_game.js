@@ -12,7 +12,7 @@ exports.handler = function(event, context, callback) {
     )
     .then((ret) => callback(null, {
         statusCode: 200,
-        body: "here: " + JSON.stringify(ret)
+        body: ret 
     }));
 }
 
