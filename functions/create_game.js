@@ -6,7 +6,9 @@ exports.handler = function(event, context, callback) {
     var client = new faunadb.Client({ secret: 'fnADpNJRxKACEjNGbUCEnPNjOjbRG12_5qJ7VOEu' });
 
     client.query(
-      q.CreateDatabase({ name: 'ZZTOP' })
+      q.Get(
+        q.Match(q.Index('state_by_gameid'), 'gecko')
+      )
     )
     .then((ret) => callback(null, {
         statusCode: 200,
