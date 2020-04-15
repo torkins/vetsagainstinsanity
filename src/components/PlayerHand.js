@@ -1,5 +1,5 @@
 import React from "react";
-import {isQuestioner, getCurrentQuestion} from "../logic/gamelogic"
+import {isQuestioner, getCurrentQuestion, getAnswerOptions} from "../logic/gamelogic"
 import {getUserName} from "../logic/userlogic"
 
 const QuestionCard = props => {
