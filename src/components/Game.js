@@ -17,7 +17,8 @@ class Game extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            gameState: null
+            gameState: null,
+            userState: new UserState("vanessa")
         };
     }
 
@@ -45,10 +46,7 @@ class Game extends React.Component {
     }
 
     render() {
-        console.info("render1");
-        let userState = new UserState("vanessa"); 
-        console.info("render2");
-        const { error, gameState, isLoaded } = this.state; 
+        const { error, userState, gameState, isLoaded } = this.state; 
         console.info("render3");
         /*
         let gameState = {
@@ -61,7 +59,9 @@ class Game extends React.Component {
         } else if (!isLoaded) {
             return (<div>Loading...</div>);
         } else {
-            let changeToUser = (username) => { userState = new UserState(username); };
+            let changeToUser = (username) => { 
+                this.setState({ userState: new UserState(username) });
+            };
             return (
                 <div className="game">
                     <PlayerList gameState={gameState} userState={userState} onPlayerClick={changeToUser}/>
