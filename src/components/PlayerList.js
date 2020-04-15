@@ -2,7 +2,7 @@ import React from "react";
 
 class PlayerList extends React.Component {
     render() {
-        const playerNames = this.state.players || ["Josie","Janie"];
+        const playerNames = this.props.players || ["Josie","Janie"];
         const playerElems = playerNames.map( (pname,index) => {
             return (
                 <li key={index}>
