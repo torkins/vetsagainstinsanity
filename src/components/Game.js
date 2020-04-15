@@ -29,7 +29,7 @@ class Game extends React.Component {
                 console.info("result");
                 this.setState({
                     isLoaded: true,
-                    gameState: result
+                    gameState: result.data
                 });
                 console.info("set");
             },
