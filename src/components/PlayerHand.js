@@ -15,8 +15,10 @@ const QuestionerHand = props => {
     let currentQuestion = getCurrentQuestion(gameState);
 
     return (
+        <>
         <div>Questioner</div>
         <QuestionCard question={currentQuestion} />
+        </>
     );
 }
 
@@ -37,8 +39,10 @@ const AnswererHand = props => {
     });
 
     return (
+        <>
         <div>Answerer</div>
         {cards}
+        </>
     );
 }
 
