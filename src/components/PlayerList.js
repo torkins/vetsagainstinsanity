@@ -1,23 +1,23 @@
 import React from "react";
+import {getPlayerNames} from "../logic/gamelogic"
 
-class PlayerList extends React.Component {
-    render() {
-        const playerNames = this.props.players || ["Josie","Janie"];
-        const playerElems = playerNames.map( (pname,index) => {
-            return (
-                <li key={index}>
-                    <button className="playerButton">{pname}</button>
-                </li>
-            );
-        });
-
+const PlayerList = props => {
+    const playerNames = getPlayerNames(props.gameState);
+    const playerElems = playerNames.map( (pname,index) => {
+        const onClick = () => props.onPlayerClick(pname);
         return (
-            <div className="playerList">
-                Player List
-                {playerElems}
-            </div>
+            <li key={index}>
+                <button className="playerButton" onclick={onClick}>{pname}</button>
+            </li>
         );
-    }
+    });
+
+    return (
+        <div className="playerList">
+            Player List
+            {playerElems}
+        </div>
+    );
 }
 
 export default PlayerList;

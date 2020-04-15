@@ -61,9 +61,10 @@ class Game extends React.Component {
         } else if (!isLoaded) {
             return (<div>Loading...</div>);
         } else {
+            let changeToUser = (username) => { userState = new UserState(username); };
             return (
                 <div className="game">
-                    <PlayerList />
+                    <PlayerList gameState={gameState} userState={userState} onPlayerClick={changeToUser}/>
                     <PlayerHand gameState={gameState} userState={userState} />
                 </div>
             );
