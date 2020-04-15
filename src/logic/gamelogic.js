@@ -6,6 +6,6 @@ export function isQuestioner(gameState, userState) {
     return getCurrentQuestioner(gameState) == playerName;
 }
 
-export function getCurrentQuestion(gameState) {
+export function getCurrentQuestioner(gameState) {
     return gameState.currentQuestioner;
 }
