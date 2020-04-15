@@ -4,7 +4,7 @@ import {getUserName} from "../logic/userlogic"
 
 const QuestionCard = props => {
     return (
-        <div>{this.props.question}</div>
+        <div>{props.question}</div>
     );
 }
 
@@ -24,7 +24,7 @@ const QuestionerHand = props => {
 
 const AnswerCard = props => {
     return (
-        <div>{this.props.answer}</div>
+        <div>{props.answer}</div>
     );
 }
 
