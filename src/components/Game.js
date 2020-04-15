@@ -60,6 +60,7 @@ class Game extends React.Component {
             return (<div>Loading...</div>);
         } else {
             let changeToUser = (username) => { 
+                console.info(`changeToUser: ${username}`);
                 this.setState({ userState: new UserState(username) });
             };
             return (
