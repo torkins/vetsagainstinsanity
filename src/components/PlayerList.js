@@ -7,7 +7,7 @@ const PlayerList = props => {
         const onClick = () => props.onPlayerClick(pname);
         return (
             <li key={index}>
-                <button className="playerButton" onclick={onClick}>{pname}</button>
+                <button className="playerButton" onClick={onClick}>{pname}</button>
             </li>
         );
     });
