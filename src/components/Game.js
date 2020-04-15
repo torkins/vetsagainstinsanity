@@ -12,6 +12,15 @@ import {UserState} from "../logic/userlogic"
     */
 
 class Game extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            gameState: null
+        };
+    }
+
     componentDidMount() {
       fetch("https://fervent-ardinghelli-aa4089.netlify.com/.netlify/functions/create_game")
         .then(res => res.json())
