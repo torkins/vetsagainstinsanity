@@ -9,3 +9,9 @@ export function isQuestioner(gameState, userState) {
 export function getCurrentQuestioner(gameState) {
     return gameState.currentQuestioner;
 }
+
+export function getPlayerNames(gameState) {
+    return (gameState.players || []).map(player => {
+        return player.userId;
+    });
+}
