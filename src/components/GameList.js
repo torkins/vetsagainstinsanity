@@ -4,8 +4,9 @@ import { useIdentityContext } from 'react-netlify-identity';
 
 const CreateNewGame: React.FunctionComponent<Props> = (props: Props) => {
     const { user } = useIdentityContext();
-    let onClick = () => { props.onCreateGame(this.props.newGameName, user) };
-    return (<button className="createNewButton">Create {this.props.newGameName}</button>);
+    let onClick = () => { props.onCreateGame(props.newGameName, user) };
+
+    return (<button className="createNewButton">Create {props.newGameName}</button>);
 };
 
 class GameList extends React.Component {
@@ -44,7 +45,7 @@ class GameList extends React.Component {
                 } else {
                     this.setState({
                         isLoaded: true,
-                        gameList: []
+                        error
                     });
                 }
 
