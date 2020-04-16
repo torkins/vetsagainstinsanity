@@ -10,8 +10,8 @@ exports.handler = function(event, context, callback) {
 
     client.query(
       q.Create(
-        q.Collection('gamestate'),
-          { data: JSON.parse(gamestate) }
+        q.Collection('GameState'),
+          { data: JSON.parse(gamestate) },
       )
     )
     .then(
