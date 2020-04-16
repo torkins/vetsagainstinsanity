@@ -7,7 +7,7 @@ import GameList from './components/GameList';
 import { Login, Logout, useLoggedIn, useLoggedInUsername } from './Auth';
 import { createNewGame } from './logic/gamelogic'
 
-const url = "https://fervent-ardinghelli-aa4089.netlify.com/";
+const url = "https://fervent-ardinghelli-aa4089.netlify.app/";
 
 
 let ProtectedGame = (props) => {
