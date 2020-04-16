@@ -41,7 +41,7 @@ class GameList extends React.Component {
         } else if (!isLoaded) {
             return (<div>Loading...</div>);
         } else {
-            var games = gameList.map( (game) => {
+            var games = gameList.map( (game, index) => {
                 let onClick = () => this.props.onChooseGame(game);
                 return (<li key={index}>
                     <button className="gameListButton" onClick={onClick}>{game.gameId}</button>
@@ -56,4 +56,4 @@ class GameList extends React.Component {
     }
 }
 
-export default PlayerList;
+export default GameList;
