@@ -56,7 +56,7 @@ class App extends React.Component {
 
       return (
           <IdentityContextProvider url={url}>
-            {isLoggedIn(useIdentityContext()) ? (
+            {useLoggedIn() ? (
                 <>
                     <Logout/>
                     {gameSelected() ? (

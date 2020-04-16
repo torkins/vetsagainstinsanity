@@ -61,11 +61,12 @@ export function Logout() {
   return <button onClick={logoutUser}>You are signed in. Log Out</button>;
 }
 
-export function getLoggedInUsername(identityContext) {
+export function useLoggedInUsername() {
+    let identityContext = useIdentityContext();
     console.debug(identityContext);
     return identityContext.user;
 }
 
-export function isLoggedIn(identityContext) {
-    return !!getLoggedInUsername(identityContext);
+export function useLoggedIn() {
+    return !!useLoggedInUsername();
 }
