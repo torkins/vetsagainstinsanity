@@ -25,7 +25,7 @@ export function getAnswerCards(gameState, userState) {
     return playerState.hand.map( cardId => getCard(cardId, gameState) );
 }
 
-function getSelectedAnswer(gameState, userState) {
+export function getSelectedAnswer(gameState, userState) {
     let playerState = getPlayerState(gameState, userState);
     return playerState.selectedAnswer == null ? null : getCardFromDeck(playerState.selectedAnswer, gameState);
 }
@@ -177,7 +177,7 @@ function fetchQuestionDeck(gameType) {
 }
 
 function insertNewGame(gameState) {
-    return fetch(`https://fervent-ardinghelli-aa4089.netlify.com/.netlify/functions/create_new_game`, {
+    return fetch(`https://fervent-ardinghelli-aa4089.netlify.com/.netlify/functions/create_game`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
