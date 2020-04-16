@@ -22,6 +22,9 @@ export function getPlayerState(gameState, userState) {
 
 export function getAnswerCards(gameState, userState) {
     console.info("getAnswerCards");
+    console.info("playerName: " + getUserName(userState));
+    console.debug(gameState);
+    console.debug(userState);
     let playerState = getPlayerState(gameState, userState);
     console.info("playerState: " + JSON.stringify(playerState));
     return playerState.cardIds.map( cardId => getCard(cardId, gameState) );
