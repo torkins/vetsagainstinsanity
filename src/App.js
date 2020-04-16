@@ -4,7 +4,7 @@ import './App.css';
 import { IdentityContextProvider, useIdentityContext } from 'react-netlify-identity';
 import Game from './components/Game';
 import GameList from './components/GameList';
-import { Login, Logout, isLoggedIn, getLoggedInUsername } from './Auth';
+import { Login, Logout, useLoggedIn, useLoggedInUsername } from './Auth';
 import { createNewGame } from './logic/gamelogic'
 
 const url = "https://fervent-ardinghelli-aa4089.netlify.com/";
