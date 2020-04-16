@@ -169,16 +169,19 @@ export class PlayerState {
 }
 
 function fetchAnswerDeck(gameType) {
+    console.info("fetchAnswerDeck");
     return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_answer_deck?gameType=${gameType}`)
         .then(res => res.json());
 }
 
 function fetchQuestionDeck(gameType) {
+    console.info("fetchQuestionDeck");
     return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_question_deck?gameType=${gameType}`)
         .then(res => res.json());
 }
 
 function insertNewGame(gameState) {
+    console.info("insertNewGame");
     return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/create_game`, {
         method: 'POST',
         headers: {
@@ -201,10 +204,12 @@ function fetchGameState(gameId) {
 }
 
 export function createNewGame(gameName, creatorId, gameType) {
+    console.info("createNewGame");
     return Promise.all([
         fetchAnswerDeck(gameType),
         fetchQuestionDeck(gameType)
     ]).then(decks => {
+        console.info("Deckzz");
         const answerDeck = decks[0],
               questionDeck = decks[1],
               newGame = new GameState(gameName, creatorId, answerDeck, questionDeck);

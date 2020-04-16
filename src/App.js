@@ -55,12 +55,14 @@ class App extends React.Component {
                 createNewGame(name, userId, "vetsagainstinsanity")
                     .then(
                         (gameState => {
+                            console.info("created");
                             this.setState({
                                 creatingGame: false,
                                 selectedGame: gameState
                             });
                         }),
                         (error => {
+                            console.info("error: " + JSON.stringify(error));
                             this.setState({
                                 creatingGame: false,
                                 selectedGame: null,
