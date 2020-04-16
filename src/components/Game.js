@@ -32,6 +32,8 @@ class Game extends React.Component {
         */
         if (error) {
             return (<div>Shit dog, there was an error: {error.message}</div>);
+        } else if (this.state.gameState == null) {
+            return (<div>Loading...</div>);
         } else {
             let changeToUser = (username) => { 
                 console.info(`changeToUser: ${username}`);

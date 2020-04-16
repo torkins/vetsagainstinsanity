@@ -36,7 +36,9 @@ class GameList extends React.Component {
                 console.info("set");
             },
             (error) => {
-                if (error.indexOf("NotFound") == -1) {
+                console.info("ERROR");
+                console.debug(error);
+                if (JSON.stringify(error).indexOf("NotFound") == -1) {
                     console.error("OH SHIT: " + error);
                     this.setState({
                         isLoaded: false,
