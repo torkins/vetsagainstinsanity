@@ -4,7 +4,7 @@ import { useIdentityContext } from 'react-netlify-identity';
 
 const CreateNewGame: React.FunctionComponent<Props> = (props: Props) => {
     const { user } = useIdentityContext();
-    let onClick = () => { props.onCreateGame(props.newGameName, user) };
+    let onClick = () => { props.onCreateGame(props.newGameName, user.email) };
 
     return (<button className="createNewButton" onClick={onClick}>Create {props.newGameName}</button>);
 };

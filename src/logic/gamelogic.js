@@ -107,6 +107,7 @@ export class GameState {
     constructor(name, creatorId, answerDeck, questionDeck) {
         this.gameId = uuidv4();
         this.gameName = name;
+        this.gameType = answerDeck.gameType;
         this.players = [new PlayerState(creatorId)];
         this.started = null;
         this.hasStarted = false;
