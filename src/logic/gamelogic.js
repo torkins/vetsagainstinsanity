@@ -20,9 +20,9 @@ export function getPlayerState(gameState, userState) {
     return gameState.players.filter( playerObj => playerObj.userId == playerName )[0];
 }
 
-export function getAnswerOptions(gameState, userState) {
+export function getAnswerCards(gameState, userState) {
     let playerState = getPlayerState(gameState, userState);
-    return playerState.hand;
+    return playerState.hand.map( cardId => getCard(cardId, gameState) );
 }
 
 export function getPlayerNames(gameState) {

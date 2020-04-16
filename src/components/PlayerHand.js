@@ -1,5 +1,5 @@
 import React from "react";
-import {isQuestioner, getCurrentQuestion, getAnswerOptions} from "../logic/gamelogic"
+import {isQuestioner, getCurrentQuestion, getAnswerCards} from "../logic/gamelogic"
 import {getUserName} from "../logic/userlogic"
 
 const QuestionCard = props => {
@@ -28,22 +28,39 @@ const AnswerCard = props => {
     );
 }
 
-const AnswererHand = props => {
-    let gameState = props.gameState;
-    let userState = props.userState;
+class AnswererHand extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            unconfirmedAnswer: null
+        };
+    }
 
-    let cards = getAnswerOptions(gameState, userState).map( (answer, index) => {
+    render() {
+        let gameState = props.gameState;
+        let userState = props.userState;
+        let isUnconfirmedAnswer = (card) => answerCardMatches(this.state.unconfirmedAnswer, card);
+        let isConfirmedAnswer = (card) => answerCardMatches(getSelectedAnswer(gameState, userState), card);
+
+        let cards = getAnswerCards(gameState, userState).map( (card, index) => {
+            let onClick = () => {
+                this.setState({
+                    unconfirmedAnswer: card
+                });
+            };
+            let buttonClass = isConfirmedAnswer(card) ? "confirmedAnswerCard" : (isUnconfirmedAnswer(card) ? "unconfirmedAnswerCard" : "answerCard");
+            return (
+                <button className={buttonClass} onClick={onClick} >Card {answer}</button>
+            );
+        });
+
         return (
-            <div>Card {answer}</div>
+            <>
+            <div>Answerer</div>
+            {cards}
+            </>
         );
-    });
-
-    return (
-        <>
-        <div>Answerer</div>
-        {cards}
-        </>
-    );
+    }
 }
 
 const PlayerHand = props => {
