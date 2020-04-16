@@ -16,7 +16,6 @@ class Game extends React.Component {
         super(props);
         this.state = {
             error: null,
-            isLoaded: false,
             gameState: this.props.gameState,
             userState: new UserState("vanessa")
         };
@@ -33,8 +32,6 @@ class Game extends React.Component {
         */
         if (error) {
             return (<div>Shit dog, there was an error: {error.message}</div>);
-        } else if (!isLoaded) {
-            return (<div>Loading...</div>);
         } else {
             let changeToUser = (username) => { 
                 console.info(`changeToUser: ${username}`);
