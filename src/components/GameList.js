@@ -35,12 +35,19 @@ class GameList extends React.Component {
                 console.info("set");
             },
             (error) => {
-                console.error("OH SHIT: " + error);
-                this.setState({
-                    isLoaded: false,
-                    error
-                });
-                console.info("set");
+                if (error.indexOf("NotFound") == -1) {
+                    console.error("OH SHIT: " + error);
+                    this.setState({
+                        isLoaded: false,
+                        error
+                    });
+                } else {
+                    this.setState({
+                        isLoaded: true,
+                        gameList: []
+                    });
+                }
+
             }
         );
     }
