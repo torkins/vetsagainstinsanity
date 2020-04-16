@@ -200,12 +200,12 @@ function fetchGameState(gameId) {
 
 export function createNewGame(gameName, creatorId, gameType) {
     return Promise.all([
-        fetchAnswerDeck("vetsagainstinsanity"),
-        fetchQuestionDeck("vetsagainstinsanity")
+        fetchAnswerDeck(gameType),
+        fetchQuestionDeck(gameType)
     ]).then(decks => {
         const answerDeck = decks[0],
               questionDeck = decks[1],
-              newGame = new GameState(name, userId, answerDeck, questionDeck);
-        return insertGameState(newGame);
+              newGame = new GameState(gameName, creatorId, answerDeck, questionDeck);
+        return insertNewGame(newGame);
     });
 }
