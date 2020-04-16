@@ -25,6 +25,19 @@ export function getAnswerCards(gameState, userState) {
     return playerState.hand.map( cardId => getCard(cardId, gameState) );
 }
 
+function getSelectedAnswer(gameState, userState) {
+    let playerState = getPlayerState(gameState, userState);
+    return playerState.selectedAnswer == null ? null : getCardFromDeck(playerState.selectedAnswer, gameState);
+}
+
+function cardMatches(card1, card2) {
+    return card1.id == card2.id && card1.text == card2.text;
+}
+
+export function answerCardMatches(card1, card2) {
+    return cardMatches(card1, card2);
+}
+
 export function getPlayerNames(gameState) {
     return (gameState.players || []).map(player => {
         return player.userId;

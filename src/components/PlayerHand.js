@@ -1,5 +1,5 @@
 import React from "react";
-import {isQuestioner, getCurrentQuestion, getAnswerCards} from "../logic/gamelogic"
+import {isQuestioner, getCurrentQuestion, getAnswerCards, answerCardMatches, getSelectedAnswer} from "../logic/gamelogic"
 import {getUserName} from "../logic/userlogic"
 
 const QuestionCard = props => {
@@ -37,6 +37,7 @@ class AnswererHand extends React.Component {
     }
 
     render() {
+        let props = this.props;
         let gameState = props.gameState;
         let userState = props.userState;
         let isUnconfirmedAnswer = (card) => answerCardMatches(this.state.unconfirmedAnswer, card);
@@ -50,7 +51,7 @@ class AnswererHand extends React.Component {
             };
             let buttonClass = isConfirmedAnswer(card) ? "confirmedAnswerCard" : (isUnconfirmedAnswer(card) ? "unconfirmedAnswerCard" : "answerCard");
             return (
-                <button className={buttonClass} onClick={onClick} >Card {answer}</button>
+                <button className={buttonClass} onClick={onClick} >Card {card.text}</button>
             );
         });
 
