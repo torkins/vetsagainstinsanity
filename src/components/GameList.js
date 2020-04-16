@@ -57,12 +57,13 @@ class GameList extends React.Component {
     }
 
     render() {
-        const { error, gameList, isLoaded } = this.state; 
+        let { error, gameList, isLoaded } = this.state; 
         if (error) {
             return (<div>Shit dog, there was an error: {error.message}</div>);
         } else if (!isLoaded) {
             return (<div>Loading...</div>);
         } else {
+            if (gameList.map == null) gameList = [gameList];
             let games = gameList.map( (game, index) => {
                 let onClick = () => this.props.onChooseGame(game);
                 return (<li key={index}>
