@@ -31,7 +31,7 @@ class App extends React.Component {
                 });
             },
             onCreateGame = (name) => {
-                let userId = getLoggedInUsername();
+                let userId = getLoggedInUsername(useIdentityContext());
 
                 this.setState({
                     selectedGame: null,
@@ -58,7 +58,7 @@ class App extends React.Component {
 
       return (
           <IdentityContextProvider url={url}>
-            {isLoggedIn() ? (
+            {isLoggedIn(useIdentityContext()) ? (
                 <>
                     <Logout/>
                     {gameSelected() ? (

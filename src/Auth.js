@@ -2,7 +2,7 @@
 import React from "react";
 import { useIdentityContext } from 'react-netlify-identity';
 
-export function Login() {
+export function Login(props) {
   const { loginUser, signupUser } = useIdentityContext();
   const formRef = React.useRef();
   const [msg, setMsg] = React.useState('');
@@ -14,7 +14,7 @@ export function Login() {
     signupUser(email, password)
       .then(user => {
         console.log('Success! Signed up', user);
-        navigate('/dashboard');
+        props.onLogin(user);
       })
       .catch(err => console.error(err) || setMsg('Error: ' + err.message));
   };
@@ -26,10 +26,10 @@ export function Login() {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        load(loginUser(email, password, true))
+        loginUser(email, password, true)
           .then(user => {
             console.log('Success! Logged in', user);
-            navigate('/dashboard');
+            props.onLogin(user);  
           })
           .catch(err => console.error(err) || setMsg('Error: ' + err.message));
       }}
@@ -61,12 +61,11 @@ export function Logout() {
   return <button onClick={logoutUser}>You are signed in. Log Out</button>;
 }
 
-export function getLoggedInUsername() {
-    const identity = useIdentityContext();
-    console.debug(identity);
-    return identity.user;
+export function getLoggedInUsername(identityContext) {
+    console.debug(identityContext);
+    return identityContext.user;
 }
 
-export function isLoggedIn() {
-    return !!getLoggedInUsername();
+export function isLoggedIn(identityContext) {
+    return !!getLoggedInUsername(identityContext);
 }
