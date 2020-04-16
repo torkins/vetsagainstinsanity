@@ -12,7 +12,7 @@ exports.handler = function(event, context, callback) {
     client.query(
       q.Create(
         q.Collection('GameState'),
-          { "data": data }
+          { "data": {gameId: "heyguys" } }
       )
     )
     .then(
