@@ -52,23 +52,6 @@ class App extends React.Component {
                             });
                         })
                     );
-
-
-
-                Promises.all([
-                    fetchAnswerDeck("vetsagainstinsanity"),
-                    fetchQuestionDeck("vetsagainstinsanity")
-                ]).then(decks => {
-                    const answerDeck = decks[0],
-                        questionDeck = decks[1],
-                        newGame = new GameState(name, userId, answerDeck, questionDeck);
-
-                    saveGameState(selected
-
-                    this.setState({
-                        selectedGame: 
-                    });
-                });
             };
       return (
           <IdentityContextProvider url={url}>
