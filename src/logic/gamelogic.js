@@ -52,7 +52,7 @@ class Card {
 }
 
 function getCardFromDeck(cardId, deck) {
-    let matches = deck.cards.filter( c => c.id == card.id );
+    let matches = deck.cards.filter( c => c.id == cardId );
     return matches.length == 0 ? null : matches[0];
 }
 
@@ -199,7 +199,7 @@ function fetchGameState(gameId) {
 }
 
 export function createNewGame(gameName, creatorId, gameType) {
-    return Promises.all([
+    return Promise.all([
         fetchAnswerDeck("vetsagainstinsanity"),
         fetchQuestionDeck("vetsagainstinsanity")
     ]).then(decks => {
