@@ -9,7 +9,7 @@ exports.handler = function(event, context, callback) {
 
     client.query(
       q.Get(
-        q.Match(q.Index('deck_by_gametype_and_decktype'), gameType, "Questions")
+        q.Match(q.Index('deck_by_gametype_and_decktype'), gameType, "Question")
       )
     )
     .then(
