@@ -45,7 +45,7 @@ class GameList extends React.Component {
                 } else {
                     this.setState({
                         isLoaded: true,
-                        error
+                        error: null
                     });
                 }
 
