@@ -32,7 +32,7 @@ class GameList extends React.Component {
                 console.info("result");
                 this.setState({
                     isLoaded: true,
-                    gameList: result.data
+                    gameList: result
                 });
                 console.info("set");
             },
