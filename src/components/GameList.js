@@ -14,7 +14,7 @@ class GameList extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            gameList: null
+            gameList: []
         }
     }
     
