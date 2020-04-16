@@ -109,6 +109,7 @@ export class GameState {
         this.gameName = name;
         this.players = [new PlayerState(creatorId)];
         this.started = null;
+        this.hasStarted = false;
         this.answerDeck = answerDeck;
         this.currentQuestion = this.currentQuestioner = null;
         this.questionDeck = questionDeck;
@@ -128,6 +129,7 @@ export class GameState {
         }
 
         this.started = new Date();
+        this.hasStarted = true;
     }
 
     isPlayer(userId) {
