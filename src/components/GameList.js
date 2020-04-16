@@ -25,9 +25,10 @@ class GameList extends React.Component {
             console.debug(res);
             let txt = await res.text();
             console.debug(txt);
-            let json = res.json();
+            //let json = res.json();
             console.debug(json);
-            return json;
+            //return json;
+            return txt;
         })
         .then(res => {
             console.debug(res);
