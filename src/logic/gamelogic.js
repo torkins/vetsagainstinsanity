@@ -24,7 +24,7 @@ export function getAnswerCards(gameState, userState) {
     console.info("getAnswerCards");
     let playerState = getPlayerState(gameState, userState);
     console.info("playerState");
-    return playerState.hand.map( cardId => getCard(cardId, gameState) );
+    return playerState.cardIds.map( cardId => getCard(cardId, gameState) );
 }
 
 export function getSelectedAnswer(gameState, userState) {
