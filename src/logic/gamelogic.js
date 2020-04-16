@@ -214,5 +214,8 @@ export function createNewGame(gameName, creatorId, gameType) {
               questionDeck = decks[1],
               newGame = new GameState(gameName, creatorId, answerDeck, questionDeck);
         return insertNewGame(newGame);
-    });
+    },
+     zz =>  {
+         console.info("uhhh: " + zz);
+     });
 }
