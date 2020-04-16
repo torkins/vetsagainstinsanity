@@ -182,14 +182,14 @@ function jsonToQuestionDeck(json) {
 function fetchAnswerDeck(gameType) {
     console.info("fetchAnswerDeck");
     return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_answer_deck?gameType=${gameType}`)
-        .then(res => res.json());
+        .then(res => res.json())
         .then(res => jsonToAnswerDeck(res.data));
 }
 
 function fetchQuestionDeck(gameType) {
     console.info("fetchQuestionDeck");
     return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_question_deck?gameType=${gameType}`)
-        .then(res => res.json());
+        .then(res => res.json())
         .then(res => jsonToQuestionDeck(res.data));
 }
 
