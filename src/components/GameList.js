@@ -19,7 +19,7 @@ class GameList extends React.Component {
     }
     
     componentDidMount() {
-      fetch("https://fervent-ardinghelli-aa4089.netlify.com/.netlify/functions/list_pending_games")
+      fetch("https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_pending_games")
         .then(res => res.json())
         .then(
             (result) => {
