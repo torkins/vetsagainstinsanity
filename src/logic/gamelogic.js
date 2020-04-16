@@ -167,17 +167,17 @@ export class PlayerState {
 }
 
 function fetchAnswerDeck(gameType) {
-    return fetch(`https://fervent-ardinghelli-aa4089.netlify.com/.netlify/functions/get_answer_deck?gameType=${gameType}`)
+    return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_answer_deck?gameType=${gameType}`)
         .then(res => res.json());
 }
 
 function fetchQuestionDeck(gameType) {
-    return fetch(`https://fervent-ardinghelli-aa4089.netlify.com/.netlify/functions/get_question_deck?gameType=${gameType}`)
+    return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_question_deck?gameType=${gameType}`)
         .then(res => res.json());
 }
 
 function insertNewGame(gameState) {
-    return fetch(`https://fervent-ardinghelli-aa4089.netlify.com/.netlify/functions/create_game`, {
+    return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/create_game`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -188,7 +188,7 @@ function insertNewGame(gameState) {
 }
 
 function fetchGameState(gameId) {
-    return fetch(`https://fervent-ardinghelli-aa4089.netlify.com/.netlify/functions/get_game_by_id`, {
+    return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_game_by_id`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
