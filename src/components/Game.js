@@ -63,10 +63,11 @@ class Game extends React.Component {
                 console.info(`changeToUser: ${username}`);
                 this.setState({ userState: new UserState(username) });
             };
+            let onAnswerChoose = () => { };
             return (
                 <div className="game">
                     <PlayerList gameState={gameState} userState={userState} onPlayerClick={changeToUser}/>
-                    <PlayerHand gameState={gameState} userState={userState} />
+                    <PlayerHand gameState={gameState} userState={userState} onAnswerChoose={onAnswerChoose}/>
                 </div>
             );
         }
