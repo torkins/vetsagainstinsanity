@@ -47,7 +47,7 @@ class App extends React.Component {
                         (error => {
                             this.setState({
                                 creatingGame: false,
-                                selectedGame: null
+                                selectedGame: null,
                                 error
                             });
                         })
