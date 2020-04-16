@@ -10,9 +10,9 @@ import { createNewGame } from './logic/gamelogic'
 const url = "https://fervent-ardinghelli-aa4089.netlify.com/";
 
 
-function ProtectedGame = props => {
-    return (
-            {useLoggedIn() ? (
+let ProtectedGame = (props) => {
+    return useLoggedIn() ?
+            (
                 <>
                     <Logout/>
                     {props.selectedGame != null ? (
@@ -23,8 +23,7 @@ function ProtectedGame = props => {
                 </>
             ) : (
                 <Login />
-            )}
-    );
+            );
 }
 
 
