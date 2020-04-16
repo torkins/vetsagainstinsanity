@@ -10,6 +10,23 @@ import { createNewGame } from './logic/gamelogic'
 const url = "https://fervent-ardinghelli-aa4089.netlify.com/";
 
 
+function ProtectedGame = props => {
+    return (
+            {useLoggedIn() ? (
+                <>
+                    <Logout/>
+                    {props.selectedGame != null ? (
+                        <Game gameState={props.selectedGame}/>
+                    ) : (
+                        <GameList onChooseGame={props.onChooseGame} onCreateGame={props.onCreateGame}/>
+                    )}
+                </>
+            ) : (
+                <Login />
+            )}
+    );
+}
+
 
 class App extends React.Component {
     constructor(props) {
@@ -22,7 +39,6 @@ class App extends React.Component {
 
     render() {
         let getGameId = () => this.state.selectedGame.gameId,
-            gameSelected = () => getGameId() != null,
             onChooseGame = (game) => {
                 this.setState({
                     selectedGame: game,
@@ -56,19 +72,7 @@ class App extends React.Component {
 
       return (
           <IdentityContextProvider url={url}>
-            {useLoggedIn() ? (
-                <>
-                    <Logout/>
-                    {gameSelected() ? (
-                        <Game gameState={this.selectedGame}/>
-                    ) : (
-                        <GameList onChooseGame={onChooseGame} onCreateGame={onCreateGame}/>
-                    )}
-                </>
-            ) : (
-                <Login />
-            )}
-              <Game />
+            <ProtectedGame selectedGame={this.state.selectedGame} onChooseGame={onChooseGame} onCreateGame={onCreateGame}/>
           </IdentityContextProvider>
       );
     }
