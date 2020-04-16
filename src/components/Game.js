@@ -17,7 +17,7 @@ class Game extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            gameState: null,
+            gameState: this.props.gameState,
             userState: new UserState("vanessa")
         };
     }

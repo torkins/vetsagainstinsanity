@@ -5,6 +5,7 @@ import { IdentityContextProvider } from 'react-netlify-identity';
 import Game from './components/Game';
 import GameList from './components/GameList';
 import { Login, Logout, isLoggedIn, getLoggedInUsername } from './Auth';
+import { createNewGame } from './logic/gamelogic'
 
 const url = "https://fervent-ardinghelli-aa4089.netlify.com/";
 
@@ -61,7 +62,7 @@ class App extends React.Component {
                 <>
                     <Logout/>
                     {gameSelected() ? (
-                        <Game gameId={getGameId()}/>
+                        <Game gameState={this.selectedGame}/>
                     ) : (
                         <GameList onChooseGame={onChooseGame} onCreateGame={onCreateGame}/>
                     )}

@@ -159,7 +159,7 @@ function insertNewGame(gameState) {
     .then(res => res.json());
 }
 
-export createNewGame(gameName, creatorId, gameType) {
+export function createNewGame(gameName, creatorId, gameType) {
     return Promises.all([
         fetchAnswerDeck("vetsagainstinsanity"),
         fetchQuestionDeck("vetsagainstinsanity")
