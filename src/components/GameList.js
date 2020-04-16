@@ -6,7 +6,7 @@ const CreateNewGame: React.FunctionComponent<Props> = (props: Props) => {
     const { user } = useIdentityContext();
     let onClick = () => { props.onCreateGame(props.newGameName, user) };
 
-    return (<button className="createNewButton">Create {props.newGameName}</button>);
+    return (<button className="createNewButton" onClick={onClick}>Create {props.newGameName}</button>);
 };
 
 class GameList extends React.Component {
