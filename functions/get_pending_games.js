@@ -15,9 +15,12 @@ exports.handler = function(event, context, callback) {
     .then(
         (ret) => callback(null, {
             statusCode: 200,
-            body: JSON.stringify(ret[0])
+            body: JSON.stringify(ret.data)
         }),
-        (err) => callback(err)
+        (err) => {
+            console.info("ERR: " + JSON.stringify(err));
+            callback(err)
+        }
     );
 }
 
