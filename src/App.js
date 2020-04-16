@@ -27,6 +27,7 @@ class App extends React.Component {
                     selectedGame: game,
                     creatingGame: false,
                     error: null
+                });
             },
             onCreateGame = (name) => {
                 let userId = getLoggedInUsername();
@@ -52,7 +53,7 @@ class App extends React.Component {
                             });
                         })
                     );
-            },
+            };
 
       return (
           <IdentityContextProvider url={url}>
