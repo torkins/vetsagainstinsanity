@@ -23,6 +23,7 @@ class App extends React.Component {
 
     render() {
         let getGameId = () => this.state.selectedGame.gameId,
+            identityContext = useIdentityContext(),
             gameSelected = () => getGameId() != null,
             onChooseGame = (game) => {
                 this.setState({
@@ -32,7 +33,7 @@ class App extends React.Component {
                 });
             },
             onCreateGame = (name) => {
-                let userId = getLoggedInUsername(useIdentityContext());
+                let userId = getLoggedInUsername(identityContext);
 
                 this.setState({
                     selectedGame: null,
