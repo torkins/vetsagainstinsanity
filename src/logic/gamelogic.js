@@ -38,6 +38,16 @@ class Card {
     }
 }
 
+function getCardFromDeck(cardId, deck) {
+    let matches = deck.cards.filter( c => c.id == card.id );
+    return matches.length == 0 ? null : matches[0];
+}
+
+function getCard(cardId, gameState) {
+    let answerCard = getCardFromDeck(cardId, gameState.answerDeck);
+    return answerCard == null ? getCardFromDeck(cardId, gameState.questionDeck) : answerCard;
+}
+
 class Deck {
     constructor(name, cards, autorecycle = true) {
         this.name = name;
@@ -46,11 +56,11 @@ class Deck {
         this.undealt = cards.map(card => new Card(card.id, card.text));
         this.discard = [];
         this.autorecycle = autorecycle;
-        shuffle();
+        this.shuffle();
     }
 
     recycle() {
-        this.undealt = undealt.concat(discard);
+        this.undealt = this.undealt.concat(this.discard);
     }
 
     shuffle() {
@@ -66,7 +76,7 @@ class Deck {
         var dealtCards = [];
         for (let i = 0; i < num; i++) {
             if (this.cards.length == 0 && this.autorecycle) {
-                recycle();
+                this.recycle();
             } else {
                 throw "Ran out of cards!";
             }
@@ -96,7 +106,7 @@ export class GameState {
     }
 
     start() {
-        if (hasStarted()) {
+        if (this.hasStarted()) {
             throw `Already started at ${this.started}!!` 
         }
 
@@ -107,8 +117,13 @@ export class GameState {
         this.started = new Date();
     }
 
+    isPlayer(userId) {
+        let match = this.players.filter( p => p.userId == userId);
+        return match.length == 0 ? false : true;
+    }
+
     addPlayer(userId) {
-        if (isPlaying(userId)) {
+        if (this.isPlaying(userId)) {
             throw `${userId} already playing!`
         } else {
             this.players.add(new PlayerState(userId));
@@ -118,9 +133,9 @@ export class GameState {
 
 export class PlayerState {
     constructor(userId) {
-        this.userId = user;
+        this.userId = userId;
         this.cardIds = [];
-        this.selectedAnswer;
+        this.selectedAnswer = null;
         this.points = 0;
     }
 
@@ -155,6 +170,17 @@ function insertNewGame(gameState) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(gameState)
+    })
+    .then(res => res.json());
+}
+
+function fetchGameState(gameId) {
+    return fetch(`https://fervent-ardinghelli-aa4089.netlify.com/.netlify/functions/get_game_by_id`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({gameId: gameId})
     })
     .then(res => res.json());
 }
