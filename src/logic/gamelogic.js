@@ -178,7 +178,7 @@ export function getCurrentQuestion(gameState) {
 }
 
 export function startGame(gameState) {
-    if (gameState.hasStarted()) {
+    if (hasStarted(gameState)) {
         throw `Already started at ${gameState.started}!!` 
     }
 
