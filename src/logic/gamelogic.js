@@ -36,9 +36,7 @@ export function answerCardMatches(card1, card2) {
 }
 
 export function getPlayerNames(gameState) {
-    return (gameState.players || []).map(player => {
-        return player.userId;
-    });
+    return (gameState.players || []).map(getPlayerName);
 }
 
 class Card {
@@ -142,8 +140,10 @@ let forEachGamePlayer = (gameState, fn) => {
     dealAnswerCards = (gameState) => {
         //loop through players, deal however many needed to get to ten
         forEachGamePlayer(gameState, playerState => {
+            console.info("Dealing answer cards to: " + getPlayerName(playerState));
             let cardCount = playerState.cardIds.length;
             let needed = 10 - cardCount;
+            console.info("needed: " + needed);
             if (needed > 0) {
                 addCards(playerState, deal(gameState.answerDeck, needed));
             }
@@ -233,6 +233,8 @@ export class PlayerState {
     }
 }
 
+export function getPlayerName(playerState) { return playerState.userId; }
+
 let selectCards = (playerState, cardIds) => {
         playerState.selectedAnswers = cardIds;
     },
@@ -246,7 +248,9 @@ let selectCards = (playerState, cardIds) => {
         return ids;
     },
     addCards = (playerState, cards) => {
+        console.info("adding cards to " + getPlayerName(playerState));
         playerState.cardIds = playerState.cardIds.concat(cards.map(c => c.id));
+        console.info("card id len: " + playerState.cardIds.length);
     };
 
 
