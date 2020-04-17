@@ -14,7 +14,7 @@ exports.handler = function(event, context, callback) {
             console.info("pending: " + JSON.stringify(ret));
             callback(null, {
                 statusCode: 200,
-                body: JSON.stringify(ret)
+                body: JSON.stringify(ret.data)
             });
         },
         (err) => {
