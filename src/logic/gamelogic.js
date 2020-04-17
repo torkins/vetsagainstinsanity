@@ -291,6 +291,7 @@ export function fetchGameState(gameId) {
 }
 
 let gameResponseToGameState = (response) => {
+    if (response == null) throw "It's null jack";
     let state = response.data;
     state.ref = response.ref;
     console.debug(state);
@@ -303,7 +304,6 @@ export function createNewGame(gameName, creatorId, gameType) {
         fetchAnswerDeck(gameType),
         fetchQuestionDeck(gameType)
     ]).then(decks => {
-        console.info("Deckzz");
         const answerDeck = decks[0],
               questionDeck = decks[1],
               newGame = new GameState(gameName, creatorId, answerDeck, questionDeck);
