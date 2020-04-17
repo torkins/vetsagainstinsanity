@@ -292,6 +292,7 @@ export function fetchGameState(gameId) {
 
 let gameResponseToGameState = (response) => {
     if (response == null) throw "It's null jack";
+    console.debug(response);
     let state = response.data;
     state.ref = response.ref;
     console.debug(state);
@@ -323,5 +324,6 @@ export function updateGameState(gameState) {
         },
         body: JSON.stringify(gameState)
     })
-    .then(res => res.json());
+    .then(res => res.json())
+    .then(res => gameResponseToGameState(res));
 }
