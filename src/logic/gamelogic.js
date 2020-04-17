@@ -175,7 +175,7 @@ export function joinGame(gameState, userId) {
     if (isPlaying(gameState, userId)) {
         throw `${userId} already playing!`
     } else {
-        gameState.players.add(new PlayerState(userId));
+        gameState.players = gameState.players.concat(new PlayerState(userId));
     }
     return gameState;
 }
