@@ -9,6 +9,7 @@ const QuestionCard = props => {
 }
 
 const QuestionerHand = props => {
+    console.info("QuestionerHand render");
     let gameState = props.gameState;
     let userState = props.userState;
 
@@ -49,6 +50,7 @@ class AnswererHand extends React.Component {
     }
 
     render() {
+        console.info("AnswererHand render");
         let props = this.props;
         let gameState = props.gameState;
         let userState = props.userState;
@@ -81,6 +83,7 @@ class AnswererHand extends React.Component {
 }
 
 const PlayerHand = props => {
+    console.info("PlayerHand render");
     let gameState = props.gameState;
     let userState = props.userState;
 

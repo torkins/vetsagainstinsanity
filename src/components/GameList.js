@@ -59,6 +59,7 @@ class GameList extends React.Component {
     }
 
     render() {
+        console.info("GameList render");
         let { error, gameList, isLoaded } = this.state; 
         if (error) {
             return (<div>Shit dog, there was an error: {error.message}</div>);

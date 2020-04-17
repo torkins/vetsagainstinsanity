@@ -23,8 +23,8 @@ class Game extends React.Component {
     }
 
     render() {
+        console.info("Game render");
         const { error, userState, gameState, isLoaded } = this.state; 
-        console.info("render3");
         /*
         let gameState = {
             gameId: "gecko",
