@@ -337,3 +337,50 @@ export function updateGameState(gameState) {
     .then(res => res.json())
     .then(res => gameResponseToGameState(res));
 }
+
+export function fetchPendingGames() {
+  fetch("https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_pending_games")
+    .then(res => res.json()) 
+    .then(
+        (result) => {
+            console.info("pending games");
+            console.debug(result);
+            return result;
+        },
+        (error) => {
+            console.info("ERROR");
+            console.debug(error);
+            if (JSON.stringify(error).indexOf("NotFound") == -1) {
+                console.error("OH SHIT: " + error);
+                throw error;
+            } else {
+                console.info("pending games not found");
+                return [];
+            }
+        }
+    );
+}
+
+export function fetchMyUnfinishedGames(userId) {
+  fetch("https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_started_games")
+    .then(res => res.json()) 
+    .then(
+        (result) => {
+            console.info("my games");
+            console.debug(result);
+            return result;
+        },
+        (error) => {
+            console.info("ERROR");
+            console.debug(error);
+            if (JSON.stringify(error).indexOf("NotFound") == -1) {
+                console.error("OH SHIT: " + error);
+                throw error;
+            } else {
+                console.info("pending games not found");
+                return [];
+            }
+        }
+    );
+}
+

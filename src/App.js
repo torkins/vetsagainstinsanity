@@ -22,7 +22,7 @@ let ProtectedGame = (props) => {
                     {props.selectedGame != null ? (
                         <Game gameState={props.selectedGame} userState={userState} {...props}/>
                     ) : (
-                        <GameList {...props}/>
+                        <GameList userState={userState} {...props}/>
                     )}
                 </>
             ) : (
