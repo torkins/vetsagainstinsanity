@@ -3,6 +3,7 @@ import React from "react";
 import PlayerList from "./PlayerList"
 import PlayerHand from "./PlayerHand"
 import {UserState} from "../logic/userlogic"
+import {isPlaying} from "../logic/gamelogic"
 /*
   fetch("https://fervent-ardinghelli-aa4089.netlify.com/.netlify/functions/create_game")
     .then(res => res.json())
