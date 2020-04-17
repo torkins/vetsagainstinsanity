@@ -17,14 +17,14 @@ class Game extends React.Component {
         super(props);
         this.state = {
             error: null,
-            gameState: this.props.gameState,
             userState: this.props.userState,
         };
     }
 
     render() {
         console.info("Game render");
-        const { error, userState, gameState, isLoaded } = this.state; 
+        const { error, userState, isLoaded } = this.state; 
+        const gameState = this.props.gameState;
         /*
         let gameState = {
             gameId: "gecko",
