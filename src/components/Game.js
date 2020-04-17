@@ -44,9 +44,11 @@ class Game extends React.Component {
                 <div className="game">
                     <PlayerList gameState={gameState} userState={userState} onPlayerClick={changeToUser}/>
                     { isPlaying(gameState, userState.username) ?
+                        <>
                         <StartGame onStartGame={this.props.onStartGame} />
                         <LeaveGame onLeaveGame={this.props.onLeaveGame} />
                         <PlayerHand gameState={gameState} userState={userState} onAnswerChoose={onAnswerChoose}/>
+                        </>
                         :
                         <JoinGame onJoinGame={this.props.onJoinGame} />
                     }
