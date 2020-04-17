@@ -291,8 +291,8 @@ export function fetchGameState(gameId) {
 }
 
 let gameResponseToGameState = (response) => {
-    if (response == null) throw "It's null jack";
     console.debug(response);
+    if (response.errorMessage) { throw errorMessage; }
     let state = response.data;
     state.ref = response.ref;
     console.debug(state);
