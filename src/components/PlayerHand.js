@@ -14,6 +14,7 @@ const QuestionerHand = props => {
     let userState = props.userState;
 
     let currentQuestion = getCurrentQuestion(gameState);
+    console.debug(currentQuestion);
 
     return (
         <>
