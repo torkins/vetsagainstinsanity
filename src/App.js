@@ -81,10 +81,10 @@ class App extends React.Component {
                     error: null
                 });
             },
-            onStartGame: () {
+            onStartGame: () => {
                 this.setState({ selectedGame: startGame(this.state.selectedGame) });
             },
-            onLeaveGame: (username) {
+            onLeaveGame: (username) => {
                 this.setState({ selectedGame: removeUserFromGame(this.state.selectedGame, username) });
             },
         }
