@@ -141,12 +141,12 @@ let forEachGamePlayer = (gameState, fn) => {
             let cardCount = playerState.cardIds.length;
             let needed = 10 - cardCount;
             if (needed > 0) {
-                addCards(playerState, gameState.answerDeck.deal(needed));
+                addCards(playerState, deal(gameState.answerDeck, needed));
             }
         });
     },
     dealQuestionCard = (gameState) => {
-        setCurrentQuestion(gameState, gameState.questionDeck.deal(1));
+        setCurrentQuestion(gameState, deal(gameState.questionDeck, 1));
     },
     chooseNewQuestioner = (gameState) => {
         let qIdx = Math.floor(Math.random()*Math.floor(gameState.players.length))
