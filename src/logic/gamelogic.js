@@ -167,8 +167,12 @@ let forEachGamePlayer = (gameState, fn) => {
         return match.length == 0 ? false : true;
     };
 
+export function isPlaying(gameState, userId) {
+    return gameState.players.filter(p => p.userId == userId).length > 0;
+}
+
 export function joinGame(gameState, userId) {
-    if (gameState.isPlaying(userId)) {
+    if (isPlaying(gameState, userId)) {
         throw `${userId} already playing!`
     } else {
         gameState.players.add(new PlayerState(userId));

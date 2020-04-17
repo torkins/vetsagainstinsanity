@@ -43,9 +43,13 @@ class Game extends React.Component {
             return (
                 <div className="game">
                     <PlayerList gameState={gameState} userState={userState} onPlayerClick={changeToUser}/>
-                    <StartGame onStartGame={this.props.onStartGame} />
-                    <LeaveGame onLeaveGame={this.props.onLeaveGame} />
-                    <PlayerHand gameState={gameState} userState={userState} onAnswerChoose={onAnswerChoose}/>
+                    { isPlaying(gameState, userState.username) ?
+                        <StartGame onStartGame={this.props.onStartGame} />
+                        <LeaveGame onLeaveGame={this.props.onLeaveGame} />
+                        <PlayerHand gameState={gameState} userState={userState} onAnswerChoose={onAnswerChoose}/>
+                        :
+                        <JoinGame onJoinGame={this.props.onJoinGame} />
+                    }
                 </div>
             );
         }
@@ -61,6 +65,12 @@ const LeaveGame = props => {
 const StartGame = props => {
     return (
         <button className="startGame" onClick={props.onStartGame}>Start Game</button>
+    );
+}
+
+const JoinGame = props => {
+    return (
+        <button className="joinGame" onClick={props.onJoinGame}>Join Game</button>
     );
 }
 
