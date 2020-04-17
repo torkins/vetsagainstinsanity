@@ -41,15 +41,15 @@ class App extends React.Component {
     }
 
     render() {
-        let getGameId = () => this.state.selectedGame.gameId,
-            onChooseGame = (game) => {
+        let gameProps = {
+            onChooseGame: (game) => {
                 this.setState({
                     selectedGame: game,
                     creatingGame: false,
                     error: null
                 });
             },
-            onCreateGame = (name, userId) => {
+            onCreateGame: (name, userId) => {
                 this.setState({
                     selectedGame: null,
                     creatingGame: true
@@ -73,11 +73,26 @@ class App extends React.Component {
                             });
                         })
                     );
-            };
+            },
+            onLeaveGame: () => {
+                this.setState({
+                    selectedGame: null,
+                    creatingGame: false,
+                    error: null
+                });
+            },
+            onStartGame: () {
+                this.setState({ selectedGame: startGame(this.state.selectedGame) });
+            },
+            onLeaveGame: (username) {
+                this.setState({ selectedGame: removeUserFromGame(this.state.selectedGame, username) });
+            },
+        }
+
 
       return (
           <IdentityContextProvider url={url}>
-            <ProtectedGame selectedGame={this.state.selectedGame} onChooseGame={onChooseGame} onCreateGame={onCreateGame}/>
+            <ProtectedGame selectedGame={this.state.selectedGame} {...gameProps} /> 
           </IdentityContextProvider>
       );
     }

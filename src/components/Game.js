@@ -17,7 +17,7 @@ class Game extends React.Component {
         this.state = {
             error: null,
             gameState: this.props.gameState,
-            userState: this.props.userState 
+            userState: this.props.userState,
         };
     }
 
@@ -43,7 +43,7 @@ class Game extends React.Component {
             return (
                 <div className="game">
                     <PlayerList gameState={gameState} userState={userState} onPlayerClick={changeToUser}/>
-                    <PlayerHand gameState={gameState} userState={userState} onAnswerChoose={onAnswerChoose}/>
+                    <PlayerHand gameState={gameState} userState={userState} onAnswerChoose={onAnswerChoose} onLeaveGame={this.props.onLeaveGame}/>
                 </div>
             );
         }

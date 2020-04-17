@@ -152,6 +152,16 @@ export class GameState {
     }
 }
 
+export function startGame(gameState) {
+    gameState.start();
+    return gameState; 
+}
+
+export function removeUserFromGame(gameState, userId) {
+    gameState.players = gameState.players.filter(p => p.userId != userId);
+    return gameState;
+}
+
 export class PlayerState {
     constructor(userId) {
         this.userId = userId;
