@@ -64,7 +64,7 @@ export function Logout() {
 export function useLoggedInUsername() {
     let identityContext = useIdentityContext();
     console.debug(identityContext);
-    return identityContext.user.email;
+    return (identityContext && identityContext.user && identityContext.user.email) || null;
 }
 
 export function useLoggedIn() {
