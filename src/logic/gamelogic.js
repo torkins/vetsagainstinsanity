@@ -47,7 +47,7 @@ class Card {
 }
 
 function getCardFromDeck(cardId, deck) {
-    let matches = deck.cards.filter( c => c.id == cardId );
+    let matches = deck.cards.filter( (c,idx) => idx == cardId );
     return matches.length == 0 ? null : matches[0];
 }
 
@@ -96,7 +96,7 @@ let recycle = (deck) => {
         return dealtCards;
     },
     getCardById = (deck, id) => {
-        return deck.cards.find(c => c.id === id);
+        return deck.cards.find((c,idx) => idx  === id);
     },
     discard = (deck, cards) => {
         deck.discard = deck.discard.concat(cards);
@@ -249,7 +249,7 @@ let selectCards = (playerState, cardIds) => {
     },
     addCards = (playerState, cards) => {
         console.info("adding cards to " + getPlayerName(playerState));
-        playerState.cardIds = playerState.cardIds.concat(cards.map(c => c.id));
+        playerState.cardIds = playerState.cardIds.concat(cards.map( (c,idx) => idx));
         console.info("card id len: " + playerState.cardIds.length);
     };
 
