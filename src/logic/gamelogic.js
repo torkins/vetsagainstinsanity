@@ -28,7 +28,7 @@ export function getSelectedAnswer(gameState, userState) {
 }
 
 function cardMatches(card1, card2) {
-    return card1.id == card2.id && card1.text == card2.text;
+    return card1 != null && card2 != null && card1.id == card2.id && card1.text == card2.text;
 }
 
 export function answerCardMatches(card1, card2) {
@@ -84,14 +84,14 @@ let recycle = (deck) => {
         console.debug(deck);
         var dealtCards = [];
         for (let i = 0; i < num; i++) {
-            if (deck.cards.length == 0) {
+            if (deck.undealt.length == 0) {
                 if (deck.autorecycle) {
                     recycle(deck);
                 } else {
                     throw "Ran out of cards!";
                 }
             }
-            dealtCards.push(deck.cards.pop());
+            dealtCards.push(deck.undealt.pop());
         }
         return dealtCards;
     },
