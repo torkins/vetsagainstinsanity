@@ -29,7 +29,8 @@ class GameList extends React.Component {
         })
         .then(
             (result) => {
-                console.info("result");
+                console.info("pending games");
+                console.debug(result);
                 this.setState({
                     isLoaded: true,
                     gameList: result
@@ -46,6 +47,7 @@ class GameList extends React.Component {
                         error
                     });
                 } else {
+                    console.info("pending games not found");
                     this.setState({
                         isLoaded: true,
                         error: null
@@ -63,6 +65,7 @@ class GameList extends React.Component {
         } else if (!isLoaded) {
             return (<div>Loading...</div>);
         } else {
+            console.info("GameList: " + gameList);
             if (gameList == null) gameList = [];
             if (gameList.map == null) gameList = [gameList];
 
