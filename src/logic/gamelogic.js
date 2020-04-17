@@ -339,7 +339,7 @@ export function updateGameState(gameState) {
 }
 
 export function fetchPendingGames() {
-  fetch("https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_pending_games")
+  return fetch("https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_pending_games")
     .then(res => res.json()) 
     .then(
         (result) => {
@@ -362,7 +362,7 @@ export function fetchPendingGames() {
 }
 
 export function fetchMyUnfinishedGames(userId) {
-  fetch("https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_started_games")
+  return fetch("https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_started_games")
     .then(res => res.json()) 
     .then(
         (result) => {
