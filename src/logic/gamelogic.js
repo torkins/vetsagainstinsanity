@@ -292,7 +292,7 @@ export function fetchGameState(gameId) {
 
 let gameResponseToGameState = (response) => {
     console.debug(response);
-    if (response.errorMessage) { throw response.errorMessage; }
+    if (response.errorMessage) { console.trace(); throw response.errorMessage; }
     let state = response.data;
     state.ref = response.ref;
     console.debug(state);
