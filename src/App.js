@@ -66,7 +66,10 @@ class App extends React.Component {
             },
             onLeaveGame: () => updateSelectedGame(null),
             onStartGame: () => applyGameState(startGame(this.state.selectedGame)),
-            onLeaveGame: (username) => applyGameState(removeUserFromGame(this.state.selectedGame, username)),
+            onLeaveGame: (username) => {
+                updateGameState(removeUserFromGame(this.state.selectedGame, username));
+                updateSelectedGame(null);
+            },
             onJoinGame: (gameId, userId) => applyGameState(fetchGameState(gameId).then(game => joinGame(game, userId))),
             applyGameState
         }
