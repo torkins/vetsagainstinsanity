@@ -43,7 +43,7 @@ class GameList extends React.Component {
         } else {
             console.info("PendingGameList: " + pendingGameList);
             let cleanList = list => {
-                if (list == null) return = [];
+                if (list == null) return [];
                 if (list.map == null) return [list];
                 return list;
             }
