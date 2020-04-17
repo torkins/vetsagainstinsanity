@@ -240,13 +240,13 @@ let selectCards = (playerState, cardIds) => {
         playerState.points += 1;
     },
     discardChosenAnswerIds = (playerState) => {
-        let ids = this.selectedAnswers;
-        this.selectedAnswers = [];
-        this.cardIds = this.cardIds.filter(id => id in ids);
+        let ids = playerState.selectedAnswers;
+        playerState.selectedAnswers = [];
+        playerState.cardIds = playerState.cardIds.filter(id => id in ids);
         return ids;
     },
     addCards = (playerState, cards) => {
-        this.cardIds = this.cardIds.concat(cards.map(c => c.id));
+        playerState.cardIds = playerState.cardIds.concat(cards.map(c => c.id));
     };
 
 
