@@ -36,24 +36,40 @@ class AnswererHand extends React.Component {
         };
     }
 
+    setUnconfirmedAnswer(card) {
+        this.setState({
+            unconfirmedAnswer: card
+        });
+    }
+
+    unsetUnconfirmedAnswer() {
+        this.setState({
+            unconfirmedAnswer: null
+        });
+    }
+
     render() {
         let props = this.props;
         let gameState = props.gameState;
         let userState = props.userState;
         let isUnconfirmedAnswer = (card) => answerCardMatches(this.state.unconfirmedAnswer, card);
         let isConfirmedAnswer = (card) => answerCardMatches(getSelectedAnswer(gameState, userState), card);
+        let onAnswerChoose = () => {
+            props.onAnswerChoose(this.state.unconfirmedAnswer);
+            this.unsetUnconfirmedAnswer();
+        }
 
         let cards = getAnswerCards(gameState, userState).map( (card, index) => {
-            let onClick = () => {
-                this.setState({
-                    unconfirmedAnswer: card
-                });
-            };
+            let onClick = () => this.setUnconfirmedAnswer(card); 
             let buttonClass = isConfirmedAnswer(card) ? "confirmedAnswerCard" : (isUnconfirmedAnswer(card) ? "unconfirmedAnswerCard" : "answerCard");
             return (
                 <button className={buttonClass} onClick={onClick} >Card {card.text}</button>
             );
         });
+
+        let confirmBtn = this.state.unconfirmedAnswer == null ? undefined : (
+            <button className="choiceConfirm" onClick={onAnswerChoose}>Confirm Answer</button>
+        );
 
         return (
             <>

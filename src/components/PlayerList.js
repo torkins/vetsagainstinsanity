@@ -3,6 +3,7 @@ import {getPlayerNames} from "../logic/gamelogic"
 
 const PlayerList = props => {
     const playerNames = getPlayerNames(props.gameState);
+    console.debug("playerNames: " + JSON.stringify(playerNames));
     const playerElems = playerNames.map( (pname,index) => {
         const onClick = () => props.onPlayerClick(pname);
         return (

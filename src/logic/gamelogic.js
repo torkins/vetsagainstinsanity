@@ -7,14 +7,6 @@ export function isQuestioner(gameState, userState) {
     return getCurrentQuestioner(gameState) == playerName;
 }
 
-export function getCurrentQuestioner(gameState) {
-    return gameState.currentQuestioner;
-}
-
-export function getCurrentQuestion(gameState) {
-    return gameState.currentQuestion;
-}
-
 export function getPlayerState(gameState, userState) {
     let playerName = getUserName(userState);
     return gameState.players.filter( playerObj => playerObj.userId == playerName )[0];
@@ -74,39 +66,43 @@ class Deck {
         this.undealt = cards.map(card => new Card(card.id, card.text));
         this.discard = [];
         this.autorecycle = autorecycle;
-        this.shuffle();
+        shuffle(this);
     }
+}
 
-    recycle() {
-        this.undealt = this.undealt.concat(this.discard);
-    }
-
-    shuffle() {
+let recycle = (deck) => {
+        deck.undealt = deck.undealt.concat(deck.discard);
+    },
+    shuffle = (deck) => {
         //Fisher-Yates
-        let undealt = this.undealt;
+        let undealt = deck.undealt;
         for (let i = undealt.length - 1; i > 0; i--) {
             let j = Math.floor(Math.random() * (i + 1));
             [undealt[i], undealt[j]] = [undealt[j], undealt[i]];
         }
-    }
-
-    deal(num) {
+    },
+    deal = (deck, num) => {
         var dealtCards = [];
         for (let i = 0; i < num; i++) {
-            if (this.cards.length == 0 && this.autorecycle) {
-                this.recycle();
+            if (deck.cards.length == 0 && deck.autorecycle) {
+                deck.recycle();
             } else {
                 throw "Ran out of cards!";
             }
-            dealtCards.append(this.cards.pop());
+            dealtCards.append(deck.cards.pop());
         }
         return dealtCards;
-    }
-
-    discard(cards) {
-        this.discard = this.discard.concat(cards);
-    }
-}
+    },
+    getCardById = (deck, id) => {
+        return deck.cards.find(c => c.id === id);
+    },
+    discard = (deck, cards) => {
+        deck.discard = deck.discard.concat(cards);
+    },
+    discardById = (deck, cardIds) => {
+        let cards = cardIds.map(id => getCardById(id));
+        deck.discard = deck.discard.concat(cards);
+    };
 
 export class GameState {
     constructor(name, creatorId, answerDeck, questionDeck) {
@@ -120,42 +116,91 @@ export class GameState {
         this.currentQuestion = this.currentQuestioner = null;
         this.questionDeck = questionDeck;
     }
+}
 
-    hasStarted() {
-        return this.started != null;
-    }
-
-    start() {
-        if (this.hasStarted()) {
-            throw `Already started at ${this.started}!!` 
-        }
-
-        if (this.players.length == 1) {
-            throw "Need more than 1 player to start a game";
-        }
-
-        this.started = new Date();
-        this.hasStarted = true;
-    }
-
-    isPlayer(userId) {
-        let match = this.players.filter( p => p.userId == userId);
+let forEachGamePlayer = (gameState, fn) => {
+        gameState.players.forEach(fn);
+    },
+    hasStarted = (gameState) => {
+        return gameState.started != null;
+    },
+    discardQuestionCard = (gameState) => {
+        gameState.questionDeck.discard([getCurrentQuestion(gameState)]);
+        setCurrentQuestion(gameState, null);
+    },
+    discardAnswerCards = (gameState) => {
+        forEachGamePlayer(gameState, playerState => {
+            let chosenAnswerCardIds = discardChosenAnswerIds(playerState);
+            gameState.answerDeck.discardById(chosenAnswerCardIds);
+        });
+    },
+    dealAnswerCards = (gameState) => {
+        //loop through players, deal however many needed to get to ten
+        forEachGamePlayer(gameState, playerState => {
+            let cardCount = playerState.cardIds.length;
+            let needed = 10 - cardCount;
+            if (needed > 0) {
+                addCards(playerState, gameState.answerDeck.deal(needed));
+            }
+        });
+    },
+    dealQuestionCard = (gameState) => {
+        setCurrentQuestion(gameState, gameState.questionDeck.deal(1));
+    },
+    chooseNewQuestioner = (gameState) => {
+        let qIdx = Math.floor(Math.random()*Math.floor(gameState.players.length))
+        setCurrentQuestioner(gameState, gameState.players[qIdx]);
+    },
+    setCurrentQuestioner = (gameState, playerState) => {
+        gameState.currentQuestioner = playerState.userId;
+    },
+    getCurrentQuestioner = (gameState) => {
+        return gameState.currentQuestioner;
+    },
+    setCurrentQuestion = (gameState, card) => {
+        gameState.currentQuestion = card;
+    },
+    isPlayer = (gameState, userId) => {
+        let match = gameState.players.filter( p => p.userId == userId);
         return match.length == 0 ? false : true;
-    }
-
-    addPlayer(userId) {
-        if (this.isPlaying(userId)) {
+    },
+    addPlayer = (gameState, userId) => {
+        if (gameState.isPlaying(userId)) {
             throw `${userId} already playing!`
         } else {
-            this.players.add(new PlayerState(userId));
+            gameState.players.add(new PlayerState(userId));
         }
-    }
+    };
+
+export function getCurrentQuestion(gameState) {
+    return gameState.currentQuestion;
 }
 
 export function startGame(gameState) {
-    gameState.start();
-    return gameState; 
-}
+    if (gameState.hasStarted()) {
+        throw `Already started at ${gameState.started}!!` 
+    }
+
+    if (gameState.players.length == 1) {
+        throw "Need more than 1 player to start a game";
+    }
+
+    gameState.started = new Date();
+    gameState.hasStarted = true;
+    startNewTurn(gameState);
+    return gameState;
+};
+
+export function startNewTurn(gameState) {
+    chooseNewQuestioner(gameState);
+    dealQuestionCard(gameState);
+    dealAnswerCards(gameState);
+};
+
+export function endTurn(gameState) {
+    discardQuestionCard(gameState);
+    discardAnswerCards(gameState);
+};
 
 export function removeUserFromGame(gameState, userId) {
     gameState.players = gameState.players.filter(p => p.userId != userId);
@@ -166,23 +211,27 @@ export class PlayerState {
     constructor(userId) {
         this.userId = userId;
         this.cardIds = [];
-        this.selectedAnswer = null;
+        this.selectedAnswers = [];
         this.points = 0;
     }
-
-    receiveNewHand(cardIds) {
-        this.selectedAnswer = null;
-        this.cardIds = cardIds;
-    }
-
-    selectedCard(cardId) {
-        this.selectedAnswer = cardId;
-    }
-
-    addPoint() {
-        this.points += 1;
-    }
 }
+
+let selectCards = (playerState, cardIds) => {
+        playerState.selectedAnswers = cardIds;
+    },
+    addPoint = (playerState) => {
+        playerState.points += 1;
+    },
+    discardChosenAnswerIds = (playerState) => {
+        let ids = this.selectedAnswers;
+        this.selectedAnswers = [];
+        this.cardIds = this.cardIds.filter(id => id in ids);
+        return ids;
+    },
+    addCards = (playerState, cards) => {
+        this.cardIds = this.cardIds.concat(cards.map(c => c.id));
+    };
+
 
 function jsonToDeck(json) {
     return json;

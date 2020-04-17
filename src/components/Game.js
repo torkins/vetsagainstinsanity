@@ -43,11 +43,25 @@ class Game extends React.Component {
             return (
                 <div className="game">
                     <PlayerList gameState={gameState} userState={userState} onPlayerClick={changeToUser}/>
-                    <PlayerHand gameState={gameState} userState={userState} onAnswerChoose={onAnswerChoose} onLeaveGame={this.props.onLeaveGame}/>
+                    <StartGame onStartGame={this.props.onStartGame} />
+                    <LeaveGame onLeaveGame={this.props.onLeaveGame} />
+                    <PlayerHand gameState={gameState} userState={userState} onAnswerChoose={onAnswerChoose}/>
                 </div>
             );
         }
     }
+}
+
+const LeaveGame = props => {
+    return (
+        <button className="leaveGame" onClick={props.onLeaveGame}>Leave Game</button>
+    );
+}
+
+const StartGame = props => {
+    return (
+        <button className="startGame" onClick={props.onStartGame}>Start Game</button>
+    );
 }
 
 export default Game;
