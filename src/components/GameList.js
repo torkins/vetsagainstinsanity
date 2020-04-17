@@ -35,10 +35,10 @@ class GameList extends React.Component {
 
     render() {
         console.info("GameList render");
-        let { error, pendingGameList, myGameList, isLoaded } = this.state; 
+        let { error, pendingGameList, myGameList, myGamesLoaded, pendingGamesLoaded } = this.state; 
         if (error) {
             return (<div>Shit dog, there was an error: {error.message}</div>);
-        } else if (!isLoaded) {
+        } else if (!pendingGamesLoaded || !myGamesLoaded) {
             return (<div>Loading...</div>);
         } else {
             console.info("PendingGameList: " + pendingGameList);
