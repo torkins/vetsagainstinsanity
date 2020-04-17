@@ -177,6 +177,7 @@ export function joinGame(gameState, userId) {
     } else {
         gameState.players.add(new PlayerState(userId));
     }
+    return gameState;
 }
 
 export function getCurrentQuestion(gameState) {
@@ -203,11 +204,13 @@ export function startNewTurn(gameState) {
     chooseNewQuestioner(gameState);
     dealQuestionCard(gameState);
     dealAnswerCards(gameState);
+    return gameState;
 };
 
 export function endTurn(gameState) {
     discardQuestionCard(gameState);
     discardAnswerCards(gameState);
+    return gameState;
 };
 
 export function removeUserFromGame(gameState, userId) {
