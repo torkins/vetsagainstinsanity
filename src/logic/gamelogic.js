@@ -82,12 +82,16 @@ let recycle = (deck) => {
         }
     },
     deal = (deck, num) => {
+        console.info(`deal ${num} from deck`);
+        console.debug(deck);
         var dealtCards = [];
         for (let i = 0; i < num; i++) {
-            if (deck.cards.length == 0 && deck.autorecycle) {
-                deck.recycle();
-            } else {
-                throw "Ran out of cards!";
+            if (deck.cards.length == 0) {
+                if (deck.autorecycle) {
+                    recycle(deck);
+                } else {
+                    throw "Ran out of cards!";
+                }
             }
             dealtCards.append(deck.cards.pop());
         }
