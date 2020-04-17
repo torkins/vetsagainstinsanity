@@ -41,14 +41,11 @@ class App extends React.Component {
     }
 
     render() {
+        let updateSelectedGame = gameState => this.setState({selectedGame: gameState, creatingGame: false, error: null}),
+            applyGameState = gameState => updateGameState(gameState).then(updateSelectedGame);
+
         let gameProps = {
-            onChooseGame: (game) => {
-                this.setState({
-                    selectedGame: game,
-                    creatingGame: false,
-                    error: null
-                });
-            },
+            onChooseGame: gameId => fetchGameState(gameId).then(updateSelectedGame),
             onCreateGame: (name, userId) => {
                 this.setState({
                     selectedGame: null,
@@ -56,14 +53,7 @@ class App extends React.Component {
                 });
 
                 createNewGame(name, userId, "vetsagainstinsanity")
-                    .then(
-                        (gameState => {
-                            console.info("created");
-                            this.setState({
-                                creatingGame: false,
-                                selectedGame: gameState
-                            });
-                        }),
+                    .then(updateSelectedGame, 
                         (error => {
                             console.info("error: " + JSON.stringify(error));
                             this.setState({
@@ -74,27 +64,11 @@ class App extends React.Component {
                         })
                     );
             },
-            onLeaveGame: () => {
-                this.setState({
-                    selectedGame: null,
-                    creatingGame: false,
-                    error: null
-                });
-            },
-            onStartGame: () => {
-                this.setState({ selectedGame: startGame(this.state.selectedGame) });
-            },
-            onLeaveGame: (username) => {
-                this.setState({ selectedGame: removeUserFromGame(this.state.selectedGame, username) });
-            },
-            onJoinGame: (gameId, userId) => {
-                fetchGameState(gameId)
-                    .then(gameState => {
-                        joinGame(gameState, userId);
-                        this.setState({ selectedGame: gameState });
-                        updateGameState(gameState);
-                    });
-            }
+            onLeaveGame: () => updateSelectedGame(null),
+            onStartGame: () => applyGameState(startGame(this.state.selectedGame)),
+            onLeaveGame: (username) => applyGameState(removeUserFromGame(this.state.selectedGame, username)),
+            onJoinGame: (gameId, userId) => applyGameState(fetchGameState(gameId).then(game => joinGame(game, userId))),
+            applyGameState
         }
 
 
