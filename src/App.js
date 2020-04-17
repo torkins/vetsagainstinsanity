@@ -70,7 +70,7 @@ class App extends React.Component {
                 updateGameState(removeUserFromGame(this.state.selectedGame, username));
                 updateSelectedGame(null);
             },
-            onJoinGame: (gameId, userId) => applyGameState(fetchGameState(gameId).then(game => joinGame(game, userId))),
+            onJoinGame: (gameId, userId) => fetchGameState(gameId).then(game => joinGame(game, userId)).then(applyGameState),
             applyGameState
         }
 
