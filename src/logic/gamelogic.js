@@ -214,7 +214,9 @@ export function endTurn(gameState) {
 };
 
 export function removeUserFromGame(gameState, userId) {
+    console.info(`removing ${userId} from game with ${gameState.players.length} players`);
     gameState.players = gameState.players.filter(p => p.userId != userId);
+    console.info(`now has ${gameState.players.length} players`);
     return gameState;
 }
 
