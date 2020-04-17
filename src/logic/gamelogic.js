@@ -317,6 +317,7 @@ export function createNewGame(gameName, creatorId, gameType) {
 
 export function updateGameState(gameState) {
     console.info("updateGameState");
+    console.debug(gameState);
     return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/update_game`, {
         method: 'POST',
         headers: {
