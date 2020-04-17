@@ -106,6 +106,7 @@ let recycle = (deck) => {
 
 export class GameState {
     constructor(name, creatorId, answerDeck, questionDeck) {
+        this.ref = null;
         this.gameId = uuidv4();
         this.gameName = name;
         this.gameType = answerDeck.gameType;
@@ -164,14 +165,15 @@ let forEachGamePlayer = (gameState, fn) => {
     isPlayer = (gameState, userId) => {
         let match = gameState.players.filter( p => p.userId == userId);
         return match.length == 0 ? false : true;
-    },
-    addPlayer = (gameState, userId) => {
-        if (gameState.isPlaying(userId)) {
-            throw `${userId} already playing!`
-        } else {
-            gameState.players.add(new PlayerState(userId));
-        }
     };
+
+export function joinGame(gameState, userId) {
+    if (gameState.isPlaying(userId)) {
+        throw `${userId} already playing!`
+    } else {
+        gameState.players.add(new PlayerState(userId));
+    }
+}
 
 export function getCurrentQuestion(gameState) {
     return gameState.currentQuestion;
@@ -268,10 +270,11 @@ function insertNewGame(gameState) {
         },
         body: JSON.stringify(gameState)
     })
-    .then(res => res.json());
+    .then(res => res.json())
+    .then(res => gameResponseToGameState(res)); 
 }
 
-function fetchGameState(gameId) {
+export function fetchGameState(gameId) {
     return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_game_by_id`, {
         method: 'POST',
         headers: {
@@ -279,7 +282,15 @@ function fetchGameState(gameId) {
         },
         body: JSON.stringify({gameId: gameId})
     })
-    .then(res => res.json());
+    .then(res => res.json())
+    .then(res => gameResponseToGameState(res)); 
+}
+
+let gameResponseToGameState = (response) => {
+    let state = response.data;
+    state.ref = response.ref;
+    console.debug(state);
+    return state;
 }
 
 export function createNewGame(gameName, creatorId, gameType) {
@@ -297,4 +308,16 @@ export function createNewGame(gameName, creatorId, gameType) {
      zz =>  {
          console.info("uhhh: " + zz);
      });
+}
+
+export function updateGameState(gameState) {
+    console.info("updateGameState");
+    return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/update_game`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(gameState)
+    })
+    .then(res => res.json());
 }

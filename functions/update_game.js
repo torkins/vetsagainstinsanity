@@ -8,10 +8,14 @@ exports.handler = function(event, context, callback) {
     var gamestate = event.body; 
     var data = JSON.parse(gamestate);
     console.info("gamestate: " + gamestate); 
+    //remove ref
+    var ref = data.ref;
+    console.info("ref: " + ref);
+    data.ref = null;
 
     client.query(
-      q.Create(
-        q.Collection('GameState'),
+      q.Update(
+          q.Ref(q.Collection('GameState'), ref),
           { "data": data } 
       )
     )

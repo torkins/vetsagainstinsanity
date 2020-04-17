@@ -5,7 +5,7 @@ import { IdentityContextProvider, useIdentityContext } from 'react-netlify-ident
 import Game from './components/Game';
 import GameList from './components/GameList';
 import { Login, Logout, useLoggedIn, useLoggedInUsername } from './Auth';
-import { createNewGame, startGame, removeUserFromGame } from './logic/gamelogic'
+import { createNewGame, joinGame, fetchGameState, updateGameState, startGame, removeUserFromGame } from './logic/gamelogic'
 import { UserState } from './logic/userlogic'
 
 const url = "https://fervent-ardinghelli-aa4089.netlify.app/";
@@ -87,6 +87,14 @@ class App extends React.Component {
             onLeaveGame: (username) => {
                 this.setState({ selectedGame: removeUserFromGame(this.state.selectedGame, username) });
             },
+            onJoinGame: (gameId, userId) => {
+                fetchGameState(gameId)
+                    .then(gameState => {
+                        joinGame(gameState, userId);
+                        this.setState({ selectedGame: gameState });
+                        updateGameState(gameState);
+                    });
+            }
         }
 
 
