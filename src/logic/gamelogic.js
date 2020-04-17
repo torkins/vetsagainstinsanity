@@ -93,7 +93,7 @@ let recycle = (deck) => {
                     throw "Ran out of cards!";
                 }
             }
-            dealtCards.append(deck.cards.pop());
+            dealtCards.push(deck.cards.pop());
         }
         return dealtCards;
     },
