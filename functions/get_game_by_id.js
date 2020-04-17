@@ -5,7 +5,9 @@ var q = faunadb.query;
 exports.handler = function(event, context, callback) {
     var client = new faunadb.Client({ secret: 'fnADpNJRxKACEjNGbUCEnPNjOjbRG12_5qJ7VOEu' });
 
-    var gameId = 'gecko';
+    var qstring = event.queryStringParameters;
+    console.info("qstring: " + JSON.stringify(qstring));
+    var gameId = qstring["id"];
 
     client.query(
       q.Get(

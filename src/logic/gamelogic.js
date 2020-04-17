@@ -275,12 +275,12 @@ function insertNewGame(gameState) {
 }
 
 export function fetchGameState(gameId) {
-    return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_game_by_id`, {
-        method: 'POST',
+    return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_game_by_id?id=${gameId}`, {
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({gameId: gameId})
+
     })
     .then(res => res.json())
     .then(res => gameResponseToGameState(res)); 

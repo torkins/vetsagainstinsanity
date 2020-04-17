@@ -32,19 +32,19 @@ class AnswererHand extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            unconfirmedAnswer: null
+            unconfirmedAnswerIds: []
         };
     }
 
-    setUnconfirmedAnswer(card) {
+    addUnconfirmedAnswer(cardId) {
         this.setState({
-            unconfirmedAnswer: card
+            unconfirmedAnswerIds: this.state.unconfirmedAnswerIds.concat(cardId)
         });
     }
 
     unsetUnconfirmedAnswer() {
         this.setState({
-            unconfirmedAnswer: null
+            unconfirmedAnswer: []
         });
     }
 
