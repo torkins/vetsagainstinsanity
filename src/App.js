@@ -6,13 +6,14 @@ import Game from './components/Game';
 import GameList from './components/GameList';
 import { Login, Logout, useLoggedIn, useLoggedInUsername } from './Auth';
 import { createNewGame } from './logic/gamelogic'
+import { UserState } from './logic/userlogic'
 
 const url = "https://fervent-ardinghelli-aa4089.netlify.app/";
 
 
 let ProtectedGame = (props) => {
     let onLogin = (user) => { console.info("Welcome " + user); }
-    let userState = userLoggedIn() ? new UserState(useLoggedInUsername()) : null;
+    let userState = useLoggedIn() ? new UserState(useLoggedInUsername()) : null;
     return useLoggedIn() ?
             (
                 <>
