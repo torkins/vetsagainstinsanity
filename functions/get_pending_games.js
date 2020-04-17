@@ -7,9 +7,7 @@ exports.handler = function(event, context, callback) {
 
     console.info("higuys");
     client.query(
-      q.Get(
         q.Match(q.Index('games_by_hasstarted'), false)
-      )
     )
     .then(
         (ret) => {
