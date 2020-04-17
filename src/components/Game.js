@@ -42,8 +42,9 @@ class Game extends React.Component {
             };
             let onAnswerChoose = () => { };
             let onJoinGame = () => {
-                this.props.onJoinGame(gameState.gameId, userState.username);
-            }
+                    this.props.onJoinGame(gameState.gameId, userState.username);
+                },
+                onLeaveGame = () => this.props.onLeaveGame(userState.username);
 
             return (
                 <div className="game">
@@ -51,7 +52,7 @@ class Game extends React.Component {
                     { isPlaying(gameState, userState.username) ?
                         <>
                         <StartGame onStartGame={this.props.onStartGame} />
-                        <LeaveGame onLeaveGame={this.props.onLeaveGame} />
+                        <LeaveGame onLeaveGame={onLeaveGame} />
                         <PlayerHand gameState={gameState} userState={userState} onAnswerChoose={onAnswerChoose}/>
                         </>
                         :
