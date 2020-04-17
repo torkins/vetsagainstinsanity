@@ -13,7 +13,8 @@ const url = "https://fervent-ardinghelli-aa4089.netlify.app/";
 
 let ProtectedGame = (props) => {
     let onLogin = (user) => { console.info("Welcome " + user); }
-    let userState = useLoggedIn() ? new UserState(useLoggedInUsername()) : null;
+    let username = useLoggedInUsername();
+    let userState = useLoggedIn() ? new UserState(username) : null;
     return useLoggedIn() ?
             (
                 <>
