@@ -9,13 +9,13 @@ exports.handler = function(event, context, callback) {
 
     client.query(
       q.Get(
-        q.Match(q.Index('games_by_started'), false)
+        q.Match(q.Index('games_by_hasstarted'), false)
       )
     )
     .then(
         (ret) => callback(null, {
             statusCode: 200,
-            body: JSON.stringify(ret.data)
+            body: JSON.stringify(ret)
         }),
         (err) => {
             console.info("ERR: " + JSON.stringify(err));

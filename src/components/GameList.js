@@ -63,11 +63,15 @@ class GameList extends React.Component {
         } else if (!isLoaded) {
             return (<div>Loading...</div>);
         } else {
+            if (gameList == null) gameList = [];
             if (gameList.map == null) gameList = [gameList];
-            let games = gameList.map( (game, index) => {
-                let onClick = () => this.props.onChooseGame(game);
+
+            let games = gameList.map( (gameInfo, index) => {
+                let gameId = gameInfo[0];
+                let gameName = gameInfo[1];
+                let onClick = () => this.props.onChooseGame(gameId);
                 return (<li key={index}>
-                    <button className="gameListButton" onClick={onClick}>{game.gameName}</button>
+                    <button className="gameListButton" onClick={onClick}>{gameName}</button>
                 </li>);
             });
             let onNewGameNameChange = (event) => {
