@@ -44,7 +44,7 @@ class App extends React.Component {
         console.info("app render");
         let updateSelectedGame = gameState => {
                 console.info("updateSelectedGame");
-                this.setState({selectedGame: gameState, creatingGame: false, error: null}),
+                this.setState({selectedGame: gameState, creatingGame: false, error: null});
             },
             applyGameState = gameState => updateGameState(gameState).then(updateSelectedGame);
 
