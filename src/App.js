@@ -20,9 +20,9 @@ let ProtectedGame = (props) => {
                 <>
                     <Logout/>
                     {props.selectedGame != null ? (
-                        <Game gameState={props.selectedGame} userState={userState}/>
+                        <Game gameState={props.selectedGame} userState={userState} {...props}/>
                     ) : (
-                        <GameList onChooseGame={props.onChooseGame} onCreateGame={props.onCreateGame}/>
+                        <GameList {...props}/>
                     )}
                 </>
             ) : (
