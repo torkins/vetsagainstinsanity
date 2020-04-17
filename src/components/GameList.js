@@ -67,7 +67,7 @@ class GameList extends React.Component {
             let games = gameList.map( (game, index) => {
                 let onClick = () => this.props.onChooseGame(game);
                 return (<li key={index}>
-                    <button className="gameListButton" onClick={onClick}>{game.gameId}</button>
+                    <button className="gameListButton" onClick={onClick}>{game.gameName}</button>
                 </li>);
             });
             let onNewGameNameChange = (event) => {
