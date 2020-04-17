@@ -152,6 +152,7 @@ let forEachGamePlayer = (gameState, fn) => {
         setCurrentQuestioner(gameState, gameState.players[qIdx]);
     },
     setCurrentQuestioner = (gameState, playerState) => {
+        console.info("setCurrentQuestion to " + playerState.userId);
         gameState.currentQuestioner = playerState.userId;
     },
     getCurrentQuestioner = (gameState) => {
@@ -188,6 +189,7 @@ export function startGame(gameState) {
     gameState.started = new Date();
     gameState.hasStarted = true;
     startNewTurn(gameState);
+    console.info("starting game!");
     return gameState;
 };
 
