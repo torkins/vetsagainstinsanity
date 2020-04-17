@@ -150,7 +150,7 @@ let forEachGamePlayer = (gameState, fn) => {
         });
     },
     dealQuestionCard = (gameState) => {
-        setCurrentQuestion(gameState, deal(gameState.questionDeck, 1));
+        setCurrentQuestion(gameState, deal(gameState.questionDeck, 1)[0]);
     },
     chooseNewQuestioner = (gameState) => {
         let qIdx = Math.floor(Math.random()*Math.floor(gameState.players.length))
