@@ -65,7 +65,7 @@ class AnswererHand extends React.Component {
         let cards = getAnswerCards(gameState, userState).map( (card, index) => {
             let onClick = () => this.setUnconfirmedAnswer(card); 
             let buttonClass = isConfirmedAnswer(card) ? "confirmedAnswerCard" : (isUnconfirmedAnswer(card) ? "unconfirmedAnswerCard" : "answerCard");
-            buttonClass = buttonClass + " four columns";
+            buttonClass = buttonClass + " six columns";
             return (
                 <button className={buttonClass} onClick={onClick} >Card {card.text}</button>
             );
