@@ -73,7 +73,7 @@ class App extends React.Component {
         let applyGameState = gameState => updateGameState(gameState).then(this.updateSelectedGame);
 
         let gameProps = {
-            onChooseGame: this.onChooseGame,
+            onChooseGame: this.onChooseGame.bind(this),
             onCreateGame: (name, userId) => {
                 this.setState({
                     selectedGame: null,
