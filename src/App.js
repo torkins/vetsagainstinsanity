@@ -5,7 +5,7 @@ import { IdentityContextProvider, useIdentityContext } from 'react-netlify-ident
 import Game from './components/Game';
 import GameList from './components/GameList';
 import { Login, Logout, useLoggedIn, useLoggedInUsername } from './Auth';
-import { createNewGame, joinGame, fetchGameState, updateGameState, startGame, removeUserFromGame } from './logic/gamelogic'
+import { createNewGame, joinGame, fetchGameState, fetchGameStateIfNewer, updateGameState, startGame, removeUserFromGame } from './logic/gamelogic'
 import { UserState } from './logic/userlogic'
 import { withCookies, Cookies } from 'react-cookie'
 import { instanceOf } from 'prop-types';
@@ -50,6 +50,20 @@ class App extends React.Component {
         };
 
         this.onChooseGame(cookies.get('selectedGameId'));
+        this.pollTimer = setInterval( () => this.pollGame(), 1000);
+        this.pollLock = false;
+    }
+
+    componentWillUnmount() {
+        this.pollTimer = null;
+    }
+
+    pollGame() {
+        if (!this.pollLock && this.selectedGame != null) {
+            fetchGameStateIfNewer(this.selectedGame).then( (gameState, updated) => {
+                if (updated) this.updateSelectedGame(gameState)
+            });
+        }
     }
 
     updateSelectedGame(gameState) {

@@ -56,8 +56,10 @@ class Game extends React.Component {
                         <PlayerHand gameState={gameState} userState={userState} onAnswerChoose={onAnswerChoose}/>
                         </>
                         :
+                        <>
                         <JoinGame onJoinGame={onJoinGame} />
                         <BackToGameList onClick={onLeaveGame} />
+                        </>
                     }
                 </div>
             );

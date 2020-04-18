@@ -292,6 +292,27 @@ function insertNewGame(gameState) {
     .then(res => gameResponseToGameState(res)); 
 }
 
+export function fetchGameStateIfNewer(gameState) {
+    let gameId = gameState.gameId,
+        ts = gameState.ts || 0;
+
+    return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_newer_game_by_id?id=${gameId}&ts=${ts}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+    })
+    .then(res => res.json())
+    .then(res => {
+        if (res.updated == undefined) {
+            return gameResponseToGameState(res)
+        } else {
+            return res.updated;
+        }
+    }); 
+}
+
 export function fetchGameState(gameId) {
     return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/get_game_by_id?id=${gameId}`, {
         method: 'GET',
@@ -309,6 +330,7 @@ let gameResponseToGameState = (response) => {
     if (response.errorMessage) { console.trace(); throw response.errorMessage; }
     let state = response.data;
     state.ref = response.ref["@ref"].id;
+    state.ts = response.ts;
     console.debug(state);
     return state;
 }
