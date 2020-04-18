@@ -70,14 +70,10 @@ class App extends React.Component {
 
     render() {
         console.info("app render");
-        let updateSelectedGame = gameState => {
-                console.info("updateSelectedGame");
-                this.setState({selectedGame: gameState, creatingGame: false, error: null});
-            },
-            applyGameState = gameState => updateGameState(gameState).then(updateSelectedGame);
+        let applyGameState = gameState => updateGameState(gameState).then(this.updateSelectedGame);
 
         let gameProps = {
-            onChooseGame: gameId => fetchGameState(gameId).then(updateSelectedGame),
+            onChooseGame: this.onChooseGame,
             onCreateGame: (name, userId) => {
                 this.setState({
                     selectedGame: null,
@@ -85,7 +81,7 @@ class App extends React.Component {
                 });
 
                 createNewGame(name, userId, "vetsagainstinsanity")
-                    .then(updateSelectedGame, 
+                    .then(this.updateSelectedGame, 
                         (error => {
                             console.info("error: " + JSON.stringify(error));
                             this.setState({
@@ -99,7 +95,7 @@ class App extends React.Component {
             onStartGame: () => applyGameState(startGame(this.state.selectedGame)),
             onLeaveGame: (username) => {
                 updateGameState(removeUserFromGame(this.state.selectedGame, username));
-                updateSelectedGame(null);
+                this.updateSelectedGame(null);
             },
             onJoinGame: (gameId, userId) => fetchGameState(gameId).then(game => joinGame(game, userId)).then(applyGameState),
             applyGameState
