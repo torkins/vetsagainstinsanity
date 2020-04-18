@@ -36,7 +36,6 @@ class App extends React.Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
     };
-    const [setCookie] = useCookies(['selectedGameId']);
 
     constructor(props) {
         super(props);
