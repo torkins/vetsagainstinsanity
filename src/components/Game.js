@@ -57,6 +57,7 @@ class Game extends React.Component {
                         </>
                         :
                         <JoinGame onJoinGame={onJoinGame} />
+                        <BackToGameList onClick={onLeaveGame} />
                     }
                 </div>
             );
@@ -64,21 +65,27 @@ class Game extends React.Component {
     }
 }
 
+const BackToGameList = props => {
+    return (
+        <button className="button" onClick={props.onLeaveGame}>Leave Game</button>
+    );
+}
+
 const LeaveGame = props => {
     return (
-        <button className="leaveGame" onClick={props.onLeaveGame}>Leave Game</button>
+        <button className="button" onClick={props.onLeaveGame}>Leave Game</button>
     );
 }
 
 const StartGame = props => {
     return (
-        <button className="startGame" onClick={props.onStartGame}>Start Game</button>
+        <button className="button-primary" onClick={props.onStartGame}>Start Game</button>
     );
 }
 
 const JoinGame = props => {
     return (
-        <button className="joinGame" onClick={props.onJoinGame}>Join Game</button>
+        <button className="button-primary" onClick={props.onJoinGame}>Join Game</button>
     );
 }
 
