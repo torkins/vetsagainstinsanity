@@ -46,6 +46,7 @@ class App extends React.Component {
         this.state = {
             selectedGame: null,
             creatingGame: false,
+            error: null
         };
 
         this.onChooseGame(cookies.get('selectedGameId'));
@@ -53,6 +54,7 @@ class App extends React.Component {
 
     updateSelectedGame(gameState) {
         console.info("updateSelectedGame");
+        console.debug(gameState);
         this.setState({selectedGame: gameState, creatingGame: false, error: null});
     }
 
