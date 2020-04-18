@@ -8,6 +8,7 @@ import { Login, Logout, useLoggedIn, useLoggedInUsername } from './Auth';
 import { createNewGame, joinGame, fetchGameState, updateGameState, startGame, removeUserFromGame } from './logic/gamelogic'
 import { UserState } from './logic/userlogic'
 import { withCookies, Cookies } from 'react-cookie'
+import { instanceOf } from 'prop-types';
 
 const url = "https://fervent-ardinghelli-aa4089.netlify.app/";
 
