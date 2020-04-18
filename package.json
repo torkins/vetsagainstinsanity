@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "faunadb": "^2.13.1",
     "react": "^16.13.1",
+    "react-cookie": "^4.0.3",
     "react-dom": "^16.13.1",
     "react-netlify-identity": "^0.2.4",
     "react-scripts": "3.4.1"

@@ -7,6 +7,7 @@ import GameList from './components/GameList';
 import { Login, Logout, useLoggedIn, useLoggedInUsername } from './Auth';
 import { createNewGame, joinGame, fetchGameState, updateGameState, startGame, removeUserFromGame } from './logic/gamelogic'
 import { UserState } from './logic/userlogic'
+import { withCookies, Cookies } from 'react-cookie'
 
 const url = "https://fervent-ardinghelli-aa4089.netlify.app/";
 
@@ -32,13 +33,39 @@ let ProtectedGame = (props) => {
 
 
 class App extends React.Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
+    const [setCookie] = useCookies(['selectedGameId']);
+
     constructor(props) {
         super(props);
+
+        const { cookies } = this.props;
+
         this.state = {
             selectedGame: null,
             creatingGame: false,
         };
+
+        this.onChooseGame(cookies.get('selectedGameId'));
     }
+
+    updateSelectedGame(gameState) {
+        console.info("updateSelectedGame");
+        this.setState({selectedGame: gameState, creatingGame: false, error: null});
+    }
+
+    onChooseGame(gameId) {
+        if (gameId != null) {
+            const { cookies } = this.props;
+
+            cookies.set('selectedGameId', gameId, { path: '/' });
+            fetchGameState(gameId).then(this.updateSelectedGame);
+        }
+    }
+
+
 
     render() {
         console.info("app render");
@@ -88,4 +115,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default withCookies(App);
