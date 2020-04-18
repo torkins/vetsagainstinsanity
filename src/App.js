@@ -72,7 +72,7 @@ class App extends React.Component {
 
     render() {
         console.info("app render");
-        let updateSelectedGame = this.updateSelectedGame(this);
+        let updateSelectedGame = this.updateSelectedGame.bind(this);
         let applyGameState = gameState => updateGameState(gameState).then(updateSelectedGame);
 
         let gameProps = {
