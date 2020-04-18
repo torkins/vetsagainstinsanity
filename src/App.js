@@ -57,6 +57,7 @@ class App extends React.Component {
     }
 
     onChooseGame(gameId) {
+        console.info("onChooseGame(" + gameId + ")");
         if (gameId != null) {
             const { cookies } = this.props;
 
