@@ -80,7 +80,9 @@ class App extends React.Component {
 
       return (
           <IdentityContextProvider url={url}>
-            <ProtectedGame selectedGame={this.state.selectedGame} {...gameProps} /> 
+            <div class="container">
+              <ProtectedGame selectedGame={this.state.selectedGame} {...gameProps} /> 
+            </div>
           </IdentityContextProvider>
       );
     }
