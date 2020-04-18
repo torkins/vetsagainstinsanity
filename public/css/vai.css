@@ -1,0 +1,8 @@
+
+.answerCard {
+    line-height: 1em;
+    text-align: left;
+    height: 5em;
+    word-wrap: break-word;
+    white-space:normal;
+}
