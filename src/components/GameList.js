@@ -48,11 +48,13 @@ class GameList extends React.Component {
                 return list;
             }
             let gameListToButtons = gameList => gameList.map( (gameInfo, index) => {
-                let gameId = gameInfo[0];
-                let gameName = gameInfo[1];
+                let gameId = gameInfo[1];
+                let gameName = gameInfo[2];
+                let refId = gameInfo[0];
                 let onClick = () => this.props.onChooseGame(gameId);
+                let onDeleteGame =() => this.props.onDeleteGame(refId);
                 return (<li key={index}>
-                    <button className="gameListButton" onClick={onClick}>{gameName}</button>
+                    <button className="gameListButton" onClick={onClick}>{gameName}</button><button className="deleteGameButton" onClick={onDeleteGame}/>
                 </li>);
             });
 
