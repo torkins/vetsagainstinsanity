@@ -5,7 +5,7 @@ import { IdentityContextProvider, useIdentityContext } from 'react-netlify-ident
 import Game from './components/Game';
 import GameList from './components/GameList';
 import { Login, Logout, useLoggedIn, useLoggedInUsername } from './Auth';
-import { selectWinner, createNewGame, joinGame, chooseUserAnswers, deleteGame, fetchGameState, fetchGameStateIfNewer, updateGameState, startGame, removeUserFromGame } from './logic/gamelogic'
+import { startNewTurn, endTurn, selectWinner, createNewGame, joinGame, chooseUserAnswers, deleteGame, fetchGameState, fetchGameStateIfNewer, updateGameState, startGame, removeUserFromGame } from './logic/gamelogic'
 import { UserState } from './logic/userlogic'
 import { withCookies, Cookies } from 'react-cookie'
 import { instanceOf } from 'prop-types';
