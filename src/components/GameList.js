@@ -58,7 +58,7 @@ class GameList extends React.Component {
                 let onClick = () => this.props.onChooseGame(gameId);
                 let onDeleteGame =() => {
                     this.props.onDeleteGame(refId);
-                    refreshGames();
+                    this.refreshGames();
                 };
                 return (<li key={index}>
                     <button className="gameListButton" onClick={onClick}>{gameName}</button><button className="deleteGameButton" onClick={onDeleteGame}/>
