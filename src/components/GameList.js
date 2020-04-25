@@ -61,7 +61,7 @@ class GameList extends React.Component {
                     this.refreshGames();
                 };
                 return (<li key={index}>
-                    <button className="gameListButton" onClick={onClick}>{gameName}</button><button className="deleteGameButton" onClick={onDeleteGame}/>
+                    <button className="gameListButton" onClick={onClick}>{gameName}</button><button className="deleteGameButton" onClick={onDeleteGame}>X</button>
                 </li>);
             });
 
