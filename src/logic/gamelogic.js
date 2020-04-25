@@ -110,6 +110,7 @@ let recycle = (deck) => {
         return dealtCards;
     },
     getCardById = (deck, id) => {
+        console.debug(deck);
         return deck.cards.find(c => c.id === id);
     },
     discard = (deck, cards) => {
