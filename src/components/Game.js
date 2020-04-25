@@ -76,7 +76,7 @@ class Game extends React.Component {
 
 const NextTurn = props => {
     return (
-        <button className="button button-primary" onClick={props.onNextTurn}>Next Turn</button>
+        <button className="button button-primary twelve columns" onClick={props.onNextTurn}>Next Turn</button>
     );
 }
 

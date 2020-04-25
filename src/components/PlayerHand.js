@@ -39,7 +39,7 @@ let createAnswerersDisplay = (gameState, allUserAnswers, onChooseWinner) => {
         return (!!selectedCards.length) ?
             (
                 <>
-                <button class="chooseAnswerer button-primary disabled={disabled}" onClick={onClick}>{selectedCards}</button>
+                <button class="chooseAnswerer twelve columns button-primary disabled={disabled}" onClick={onClick}>{selectedCards}</button>
                 </>
             ) 
             :
