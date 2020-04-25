@@ -1,7 +1,8 @@
 import {getUserName} from "./userlogic"
 import { v4 as uuidv4 } from 'uuid';
 
-export isQuestioner = (gameState, userState) => isPlayerQuestioner(gameState, getPlayerState(gameState, userState));
+const isQuestioner = (gameState, userState) => isPlayerQuestioner(gameState, getPlayerState(gameState, userState));
+export isQuestioner;
 
 function isPlayerQuestioner(gameState, playerState) {
     return getCurrentQuestioner(gameState) == playerState.userId;

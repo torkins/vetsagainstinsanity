@@ -52,7 +52,7 @@ class Game extends React.Component {
                         <>
                         <StartGame onStartGame={this.props.onStartGame} />
                         <LeaveGame onLeaveGame={onLeaveGame} />
-                        <PlayerHand gameState={gameState} userState={userState} onAnswerChoose={this.props.onAnswerChoose}/>
+                        <PlayerHand gameState={gameState} userState={userState} onChooseAnswer={this.props.onChooseAnswer}/>
                         </>
                         :
                         <>
