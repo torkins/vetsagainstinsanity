@@ -3,20 +3,12 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const isQuestioner = (gameState, userState) => isPlayerQuestioner(gameState, getPlayerState(gameState, userState));
 
-function isPlayerQuestioner(gameState, playerState) {
-    return getCurrentQuestioner(gameState) == playerState.userId;
-}
+let isPlayerQuestioner = (gameState, playerState) => getCurrentQuestioner(gameState) == playerState.userId;
 
-export function getPlayerState(gameState, userState) {
-    let playerName = getUserName(userState);
-    return gameState.players.filter( playerObj => playerObj.userId == playerName )[0];
-}
+export const = getPlayerState = (gameState, userState) => getPlayerStateForPlayerName(getUserName(userState));
 
 export function getAnswerCards(gameState, userState) {
     console.info("getAnswerCards");
-    console.info("playerName: " + getUserName(userState));
-    console.debug(gameState);
-    console.debug(userState);
     let playerState = getPlayerState(gameState, userState);
     console.info("playerState: " + JSON.stringify(playerState));
     return playerState.cardIds.map( cardId => getAnswerCardFromId(gameState, cardId) );
@@ -233,7 +225,7 @@ export function getPoints(gameState, playerName) {
 
 function getPlayerStateForPlayerName(gameState, playerName) {
     for (let playerState of getPlayerStates(gameState)) {
-        if (playerState.userId = playerName) return playerState;
+        if (playerState.userId == playerName) return playerState;
     }
     return null;
 }
