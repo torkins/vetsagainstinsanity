@@ -118,11 +118,11 @@ class AnswererHand extends React.Component {
             } else {
                 if (sufficientAnswers) { 
                     onClick = () => {};
-                    buttonClass = "answerCard button-primary four columns";
+                    buttonClass = "answerCard button-primary five columns";
                     disabled = true;
                 } else {
                     onClick = () => this.addUnconfirmedAnswer(card.id);
-                    buttonClass = "answerCard button-primary four columns";
+                    buttonClass = "answerCard button-primary five columns";
                     disabled = false;
                 }
 
@@ -138,7 +138,7 @@ class AnswererHand extends React.Component {
             (!sufficientAnswers ? (
                 <div>Please choose {requiredAnswers - this.state.unconfirmedAnswerIds.length} answers</div>
                 ) : (
-                    <button className="button-primary choiceConfirm" onClick={onChooseAnswer}>Confirm Answer</button>
+                    <button className="button-primary choiceConfirm five columns" onClick={onChooseAnswer}>Confirm Answer</button>
                 )
             ) : undefined;
 
@@ -146,7 +146,7 @@ class AnswererHand extends React.Component {
             let card = getAnswerCardFromId(gameState, id);
             let unSelectAnswer = () => this.removeUnconfirmedAnswer(id); 
             return (
-                <button className="button-primary" onClick={unSelectAnswer}>{card.text}</button>
+                <button className="button-primary five columns" onClick={unSelectAnswer}>{card.text}</button>
             );
         });
 
@@ -162,7 +162,7 @@ class AnswererHand extends React.Component {
             {confirmArea}
             {selectedAnswers}
             <div>Available Cards</div>
-            {unselectedCards}
+            <div className="possibleAnswers">{unselectedCards}</div>
             </>
         );
     }
