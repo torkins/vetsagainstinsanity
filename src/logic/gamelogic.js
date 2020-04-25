@@ -5,7 +5,7 @@ export const isQuestioner = (gameState, userState) => isPlayerQuestioner(gameSta
 
 let isPlayerQuestioner = (gameState, playerState) => getCurrentQuestioner(gameState) == playerState.userId;
 
-export const = getPlayerState = (gameState, userState) => getPlayerStateForPlayerName(getUserName(userState));
+export const getPlayerState = (gameState, userState) => getPlayerStateForPlayerName(getUserName(userState));
 
 export function getAnswerCards(gameState, userState) {
     console.info("getAnswerCards");
