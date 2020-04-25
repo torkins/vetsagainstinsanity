@@ -25,6 +25,7 @@ class Game extends React.Component {
         console.info("Game render");
         const { error, userState, isLoaded } = this.state; 
         const gameState = this.props.gameState;
+        console.debug(gameState);
         /*
         let gameState = {
             gameId: "gecko",
