@@ -192,6 +192,27 @@ export function getCurrentQuestion(gameState) {
     return gameState.currentQuestion;
 }
 
+function setCurrentWinner(gameState, playerState) {
+    gameState.currentWinner = playerState.userId;
+}
+function clearCurrentWinner(gameState, playerState) {
+    gameState.currentWinner = undefined;
+}
+
+export function selectWinner(gameState, playerName) {
+    let playerState = getPlayerStateForPlayerName(gameState, playerName);
+    addPoints(gameState, playerState, 1);
+    setCurrentWinner(gameState, playerState);
+    return gameState;
+}
+
+function getPlayerStateForPlayerName(gameState, playerName) {
+    for (let playerState of getPlayerStates(gameState)) {
+        if (playerState.userId = playerName) return playerState;
+    }
+    return null;
+}
+
 export function startGame(gameState) {
     if (hasStarted(gameState)) {
         throw `Already started at ${gameState.started}!!` 
@@ -218,6 +239,7 @@ export function startNewTurn(gameState) {
 export function endTurn(gameState) {
     discardQuestionCard(gameState);
     discardAnswerCards(gameState);
+    clearCurrentWinner(gameState);
     return gameState;
 };
 
