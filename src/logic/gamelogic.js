@@ -206,9 +206,11 @@ export const getCurrentWinner = gameState => gameState.currentWinner;
 
 function setCurrentWinner(gameState, playerState) {
     gameState.currentWinner = playerState.userId;
+    return gameState;
 }
 function clearCurrentWinner(gameState, playerState) {
     gameState.currentWinner = undefined;
+    return gameState;
 }
 
 function addPoints(gameState, playerState, num) {

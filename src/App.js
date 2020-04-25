@@ -106,6 +106,9 @@ class App extends React.Component {
             onChooseWinner: playerName => applyGameState(selectWinner(this.state.selectedGame, playerName)),
             onChooseAnswer: (userState, answerIds) => applyGameState(chooseUserAnswers(this.state.selectedGame, userState, answerIds)),
             onChooseGame: this.onChooseGame.bind(this),
+            onNextTurn: () => {
+                applyGameState(startNewTurn(endTurn(this.state.selectedGame)));
+            },
             onCreateGame: (name, userId) => {
                 this.setState({
                     selectedGame: null,
