@@ -57,7 +57,7 @@ const QuestionerHand = props => {
     
 
     return (
-        g>
+        <>
         <h3>You're the Questioner!</h3>
         <h3>Submitted Answers</h3>
         {userAnswers}
