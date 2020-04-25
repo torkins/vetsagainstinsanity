@@ -20,8 +20,8 @@ class GameList extends React.Component {
             myGameList: []
         }
     }
-    
-    componentDidMount() {
+
+    refreshGames() {
         fetchPendingGames().then(
             gameList => this.setState({pendingGamesLoaded: true, pendingGameList: gameList}),
             error => this.setState({pendingGamesLoaded: false, error})
@@ -31,6 +31,10 @@ class GameList extends React.Component {
             gameList => this.setState({myGamesLoaded: true, myGameList: gameList}),
             error => this.setState({myGamesLoaded: false, error})
         );
+    }
+    
+    componentDidMount() {
+        refreshGames();
     }
 
     render() {
@@ -52,7 +56,10 @@ class GameList extends React.Component {
                 let gameName = gameInfo[2];
                 let refId = gameInfo[0];
                 let onClick = () => this.props.onChooseGame(gameId);
-                let onDeleteGame =() => this.props.onDeleteGame(refId);
+                let onDeleteGame =() => {
+                    this.props.onDeleteGame(refId);
+                    refreshGames();
+                };
                 return (<li key={index}>
                     <button className="gameListButton" onClick={onClick}>{gameName}</button><button className="deleteGameButton" onClick={onDeleteGame}/>
                 </li>);
