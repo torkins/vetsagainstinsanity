@@ -66,22 +66,23 @@ const QuestionerHand = props => {
     let turnActive = turnIsActive(gameState);
     let currentWinner = turnActive ? null : getCurrentWinner(gameState);
 
-    return (
-        <>
-        <h3>You're the Questioner!</h3>
-        { turnIsActive(gameState) ?
-            (<h3>Submitted Answers</h3>
-            {userAnswerOptions})
-            :
-            (
-                <>
-                <h3>Winner: {getCurrentWinner(gameState)}</h3>
-                <h3>{getUserAnswer(getCurrentWinner(gameState))}</h3>
-                </h>
-            )
-        }
-        </>
-    );
+    if (turnIsActive(gameState)) {
+        return (
+            <>
+            <h3>You're the Questioner!</h3>
+            <h3>Submitted Answers</h3>
+            {userAnswerOptions}
+            </>
+        );
+    } else {
+        return (
+            <>
+            <h3>Winner: {getCurrentWinner(gameState)}</h3>
+            <h3>{getUserAnswer(getCurrentWinner(gameState))}</h3>
+            </h>
+            </>
+        );
+    }
 }
 
 const AnswerCard = props => {
