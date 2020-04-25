@@ -199,6 +199,12 @@ function clearCurrentWinner(gameState, playerState) {
     gameState.currentWinner = undefined;
 }
 
+function addPoints(gameState, playerState, num) {
+    for (let i = 0; i < num; i++) {
+        addPoint(playerState);
+    }
+}
+
 export function selectWinner(gameState, playerName) {
     let playerState = getPlayerStateForPlayerName(gameState, playerName);
     addPoints(gameState, playerState, 1);
