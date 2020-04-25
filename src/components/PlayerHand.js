@@ -4,7 +4,7 @@ import {getUserName} from "../logic/userlogic"
 
 const QuestionCard = props => {
     return (
-        <div className="questionCard twelve columns"><h5 className="questionCard">{!!props.question ? props.question.text : "No Question yet"}</h5></div>
+        <div className="questionCard twelve columns"><h3 className="questionCard">{!!props.question ? props.question.text : "No Question yet"}</h3></div>
     );
 }
 
@@ -57,8 +57,8 @@ const QuestionerHand = props => {
     
 
     return (
-        <>
-        <h2>You're the Questioner!</h2>
+        g>
+        <h3>You're the Questioner!</h3>
         <h3>Submitted Answers</h3>
         {userAnswers}
         </>
