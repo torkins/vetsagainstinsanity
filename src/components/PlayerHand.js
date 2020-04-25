@@ -53,14 +53,35 @@ const QuestionerHand = props => {
     let gameState = props.gameState;
     let userState = props.userState;
 
-    let userAnswers = createAnswerersDisplay(gameState, getAllUserAnswers(gameState), props.onChooseWinner);
+    let allUserAnswers = getAllUserAnswers(gameState);
+    let getUserAnswer = username => {
+        for (const entry of allUserAnswers) {
+            const [entryUser, selectedIds] = entry;
+            if (username == entryUser) {
+                return selectedIds.map(id => getAnswerCardFromId(gameState, id)).join(", ");
+            }
+        }
+    };
+    let userAnswerOptions = createAnswerersDisplay(gameState, allUserAnswers, props.onChooseWinner);
+    let turnActive = turnIsActive(gameState);
+    let currentWinner = turnActive ? null : getCurrentWinner(gameState);
+    let winningCards: 
     
 
     return (
         <>
         <h3>You're the Questioner!</h3>
-        <h3>Submitted Answers</h3>
-        {userAnswers}
+        { turnIsActive(gameState) ?
+            (<h3>Submitted Answers</h3>
+            {userAnswerOptions})
+            :
+            (
+                <>
+                <h3>Winner: {getCurrentWinner(gameState)}</h3>
+                <h3>{getUserAnswer(getCurrentWinner(gameState))}</h3>
+                </h>
+            )
+        }
         </>
     );
 }
