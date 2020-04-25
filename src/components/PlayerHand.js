@@ -79,7 +79,7 @@ const QuestionerHand = props => {
     } else {
         return (
             <>
-            <div class="twelve columns">
+            <div class="results twelve columns">
                 <h3>Winner: {getCurrentWinner(gameState)}</h3>
                 <h3>{getUserAnswer(getCurrentWinner(gameState))}</h3>
             </div>
