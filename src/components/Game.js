@@ -83,36 +83,36 @@ const NextTurn = props => {
 const WaitingForNextTurn = props => {
     if (props.youWon) {
         return (
-            <div>Congratulations, you won this round! Waiting for creator to start next turn...</div>
+            <div className="results twelve columns">Congratulations, you won this round! Waiting for creator to start next turn...</div>
         );
     } else {
         return (
-            <div>{props.lastWinner} won this round, waiting for creator to start next turn...</div>
+            <div className="results twelve columns">{props.lastWinner} won this round, waiting for creator to start next turn...</div>
         );
     }
 }
 
 const BackToGameList = props => {
     return (
-        <button className="button" onClick={props.onLeaveGame}>Leave Game</button>
+        <button className="button twelve columns" onClick={props.onLeaveGame}>Leave Game</button>
     );
 }
 
 const LeaveGame = props => {
     return (
-        <button className="button" onClick={props.onLeaveGame}>Leave Game</button>
+        <button className="button twelve columns" onClick={props.onLeaveGame}>Leave Game</button>
     );
 }
 
 const StartGame = props => {
     return (
-        <button className="button-primary" onClick={props.onStartGame}>Start Game</button>
+        <button className="button-primary six columns" onClick={props.onStartGame}>Start Game</button>
     );
 }
 
 const JoinGame = props => {
     return (
-        <button className="button-primary" onClick={props.onJoinGame}>Join Game</button>
+        <button className="button-primary six columns" onClick={props.onJoinGame}>Join Game</button>
     );
 }
 
