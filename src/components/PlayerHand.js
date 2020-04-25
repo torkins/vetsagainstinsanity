@@ -110,7 +110,7 @@ class AnswererHand extends React.Component {
             props.onChooseAnswer(userState, this.state.unconfirmedAnswerIds);
             this.removeUnconfirmedAnswer();
         };
-        let sufficientAnswers = this.state.unconfirmedAnswerIds.length >= requiredAnswers;
+        let sufficientAnswers = this.state.unconfirmedAnswerIds.length >= requiredAnswers || getSelectedAnswerIdsForUser(gameState, userState).length > 0;
 
         let unselectedCards = getAnswerCards(gameState, userState).map( (card, index) => {
             let onClick, buttonClass, disabled;
