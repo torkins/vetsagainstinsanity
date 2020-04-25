@@ -135,9 +135,9 @@ const PlayerHand = props => {
     let userState = props.userState;
 
     if (isQuestioner(gameState, userState)) {
-        return ( <QuestionerHand gameState={gameState} userState={userState} /> )
+        return ( <QuestionerHand gameState={gameState} userState={userState}/> )
     } else {
-        return ( <AnswererHand gameState={gameState} userState={userState} /> )
+        return ( <AnswererHand gameState={gameState} userState={userState} onChooseAnswer={props.onChooseAnswer}/> )
     }
 };
 
