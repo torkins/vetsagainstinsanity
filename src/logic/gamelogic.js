@@ -314,7 +314,7 @@ let selectCards = (playerState, cardIds) => {
     discardChosenAnswerIds = (playerState) => {
         let ids = playerState.selectedAnswers;
         playerState.selectedAnswers = [];
-        playerState.cardIds = playerState.cardIds.filter(id => !ids.contains(id));
+        playerState.cardIds = playerState.cardIds.filter(id => !ids.includes(id));
         return ids;
     },
     addCards = (playerState, cards) => {
