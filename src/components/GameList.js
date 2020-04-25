@@ -34,7 +34,7 @@ class GameList extends React.Component {
     }
     
     componentDidMount() {
-        refreshGames();
+        this.refreshGames();
     }
 
     render() {
