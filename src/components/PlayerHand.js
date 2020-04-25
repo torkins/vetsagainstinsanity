@@ -133,6 +133,8 @@ class AnswererHand extends React.Component {
             }
         });
 
+        console.info("turnIsActive: " + turnIsActive(gameState));
+
         let confirmArea = turnIsActive(gameState) ?
             (!sufficientAnswers ? (
                 <div>Please choose {requiredAnswers - this.state.unconfirmedAnswerIds.length} answers</div>
@@ -149,12 +151,12 @@ class AnswererHand extends React.Component {
             );
         });
 
-        let selectedAnswers = (
+        let selectedAnswers = this.state.unconfirmedAnswerIds.length > 0 ? (
             <div>
             Selected Answers:
             {selectedCards}
             </div>
-        );
+        ) : (<></>);
 
         return (
             <>
