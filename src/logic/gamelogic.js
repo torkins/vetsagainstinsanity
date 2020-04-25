@@ -35,6 +35,7 @@ export function allUsersReady(gameState) {
         let [userName, selectedAnswerIds] = entry;
         if (selectedAnswerIds.length < requiredAnswers) return false;
     }
+    return true;
 }
 
 let getSelectedAnswerIdsForPlayer = (gameState, playerState) => {
@@ -170,7 +171,7 @@ let forEachGamePlayer = (gameState, fn) => {
     chooseNewQuestioner = (gameState) => {
         let current = getCurrentQuestioner(gameState);
         if (!!current) {
-            let playerIdx = gameState.players.findIndex(playerState => playerState.userId == current.userId);
+            let playerIdx = gameState.players.findIndex(playerState => playerState.userId == current);
             let newIdx = playerIdx == gameState.players.length - 1 ? 0 : playerIdx + 1;
             setCurrentQuestioner(gameState, gameState.players[newIdx]);
         } else {

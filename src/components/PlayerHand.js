@@ -16,7 +16,7 @@ let createAnswerersDisplay = (gameState, allUserAnswers, onChooseWinner) => {
 
     let disabled = !allUsersReady(gameState);
 
-    return Array.from(allUserAnswers.entries(), entry => {
+    let userAnswerButtons = Array.from(allUserAnswers.entries(), entry => {
         let [username, selectedIds] = entry;
         const onClick = () => onChooseWinner(username);
         const selectedCards = selectedIds.map((selectedId,idx) => {
@@ -36,16 +36,18 @@ let createAnswerersDisplay = (gameState, allUserAnswers, onChooseWinner) => {
             }
         })
 
-        return (!!selectedCards.length) ?
-            (
+        return (
                 <>
                 <button class="chooseAnswerer twelve columns button-primary disabled={disabled}" onClick={onClick}>{selectedCards}</button>
                 </>
-            ) 
-            :
-            ( <> <div class="waitingForAnswers twelve columns">Waiting for answers...</div>  </> );
-    })
+        );
+    });
 
+    if (disabled) {
+        return ( <> <div class="waitingForAnswers twelve columns">Waiting for answers...</div>  </> );
+    } else {
+        return userAnswerButtons;
+    }
 };
 
 const QuestionerHand = props => {
