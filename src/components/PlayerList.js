@@ -13,7 +13,7 @@ const PlayerList = props => {
     });
 
     return (
-        <div className="playerList five columns">
+        <div className="playerList twelve columns">
             Player List
             {playerElems}
         </div>
