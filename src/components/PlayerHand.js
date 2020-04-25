@@ -11,7 +11,7 @@ const QuestionCard = props => {
 let createAnswerersDisplay = allUserAnswers => {
     for (const entry of allUserAnswers.entries()) {
         let [username, selectedIds] = entry;
-        console.info(username + " selected + " selectedIds);
+        console.info(username + " selected " + selectedIds);
     }
 
     return allUserAnswers.entries().map(entry => {

@@ -19,7 +19,7 @@ export function getAnswerCards(gameState, userState) {
     console.debug(userState);
     let playerState = getPlayerState(gameState, userState);
     console.info("playerState: " + JSON.stringify(playerState));
-    return playerState.cardIds.map( cardId => getCard(cardId, gameState) );
+    return playerState.cardIds.map( cardId => getAnswerCardFromId(gameState, cardId) );
 }
 
 export function getSelectedAnswerIdsForUser(gameState, userState) {
@@ -55,7 +55,7 @@ function getCardFromDeck(cardId, deck) {
     return matches.length == 0 ? null : matches[0];
 }
 
-function getCard(cardId, gameState) {
+export function getAnswerCardFromId(gameState, cardId) {
     let answerCard = getCardFromDeck(cardId, gameState.answerDeck);
     return answerCard == null ? getCardFromDeck(cardId, gameState.questionDeck) : answerCard;
 }
