@@ -1,10 +1,10 @@
 import {getUserName} from "./userlogic"
 import { v4 as uuidv4 } from 'uuid';
 
-export function isQuestioner(gameState, userState) {
-    let playerName = getUserName(userState);
-    console.debug("isQuestioner(gameState, ${playerName}");
-    return getCurrentQuestioner(gameState) == playerName;
+export isQuestioner = (gameState, userState) => isPlayerQuestioner(gameState, getPlayerState(gameState, userState));
+
+function isPlayerQuestioner(gameState, playerState) {
+    return getCurrentQuestioner(gameState) == playerState.userId;
 }
 
 export function getPlayerState(gameState, userState) {
@@ -307,7 +307,9 @@ let getPlayerStates = gameState => gameState.players;
 export function getAllUserAnswers(gameState) {
     let result = new Map();
     getPlayerStates(gameState).forEach( playerState => {
-        result.set(getPlayerName(playerState), getSelectedAnswerIdsForPlayer(gameState, playerState));
+        if (!isPlayerQuestioner(gameState, playerState)) {
+            result.set(getPlayerName(playerState), getSelectedAnswerIdsForPlayer(gameState, playerState));
+        }
     });
     return result;
 }
