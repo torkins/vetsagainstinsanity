@@ -36,7 +36,7 @@ let createAnswerersDisplay = (gameState, allUserAnswers) => {
         })
         return (
             <>
-            <button class="chooseAnswerer button-primary disabled={disabled}">{username}:</div>
+            <button class="chooseAnswerer button-primary disabled={disabled}">{username}:</button>
             {selectedCards}
             </>
         );
