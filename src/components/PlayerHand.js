@@ -70,7 +70,7 @@ const QuestionerHand = props => {
         return (
             <>
             <div class="twelve columns">
-                <h3>You're the Questioner!</h3>
+                <h4>You're the Questioner!</h4>
                 <h3>Submitted Answers</h3>
                 {userAnswerOptions}
             </div>
