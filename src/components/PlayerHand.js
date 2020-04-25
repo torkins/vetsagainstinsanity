@@ -4,7 +4,7 @@ import {getUserName} from "../logic/userlogic"
 
 const QuestionCard = props => {
     return (
-        <div className="questionCard">{props.question.text}</div>
+        <div className="questionCard">{!!props.question ? props.question.text : "No Question yet"}</div>
     );
 }
 
