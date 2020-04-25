@@ -1,5 +1,5 @@
 import React from "react";
-import {turnIsActive, getRequiredAnswerCount, isQuestioner, allUsersReady, getCurrentQuestion, getAllUserAnswers, getAnswerCards, getAnswerCardFromId, answerCardMatches, getSelectedAnswerIdsForUser} from "../logic/gamelogic"
+import {getCurrentWinner, turnIsActive, getRequiredAnswerCount, isQuestioner, allUsersReady, getCurrentQuestion, getAllUserAnswers, getAnswerCards, getAnswerCardFromId, answerCardMatches, getSelectedAnswerIdsForUser} from "../logic/gamelogic"
 import {getUserName} from "../logic/userlogic"
 
 const QuestionCard = props => {
