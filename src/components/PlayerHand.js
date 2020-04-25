@@ -115,9 +115,9 @@ class AnswererHand extends React.Component {
         });
 
 
-        let confirmBtn = !!this.state.unconfirmedAnswerIds.length ? undefined : (
+        let confirmBtn = !!this.state.unconfirmedAnswerIds.length ? (
             <button className="button-primary choiceConfirm" onClick={onChooseAnswer}>Confirm Answer</button>
-        );
+        ) : undefined;
 
         return (
             <>
