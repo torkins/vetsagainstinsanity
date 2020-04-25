@@ -80,8 +80,8 @@ const QuestionerHand = props => {
         return (
             <>
             <div class="results twelve columns">
-                <h3>Winner: {getCurrentWinner(gameState)}</h3>
-                <h3>{getUserAnswer(getCurrentWinner(gameState))}</h3>
+                Winner: {getCurrentWinner(gameState)}</br>
+                {getUserAnswer(getCurrentWinner(gameState))}
             </div>
             </>
         );
