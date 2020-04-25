@@ -22,14 +22,18 @@ class GameList extends React.Component {
     }
 
     refreshGames() {
-        fetchPendingGames().then(
-            gameList => this.setState({pendingGamesLoaded: true, pendingGameList: gameList}),
-            error => this.setState({pendingGamesLoaded: false, error})
-        );
-
-        fetchMyUnfinishedGames(this.props.userState.username).then(
-            gameList => this.setState({myGamesLoaded: true, myGameList: gameList}),
-            error => this.setState({myGamesLoaded: false, error})
+        Promise.all(
+            fetchPendingGames(),
+            fetchMyUnfinishedGames(this.props.userState.username)
+        ).then(gamelists -> {
+                let pending = gamelists[0];
+                let unfinished = gamelists[1];
+                this.setState({
+                    pendingGamesLoaded: true, pendingGameList: pending,
+                    myGamesLoaded: true, myGameList: gameList
+                });
+            },
+            error => this.setState({pendingGamesLoaded: false, myGamesLoaded: false, error})
         );
     }
     

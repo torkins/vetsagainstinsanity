@@ -59,19 +59,15 @@ class App extends React.Component {
     }
 
     pollGame() {
-        if (!this.pollLock && this.selectedGame != null) {
-            console.info("polling");
+        if (!this.pollLock && this.state.selectedGame != null) {
             fetchGameStateIfNewer(this.selectedGame).then( (gameState, updated) => {
                 if (updated) this.updateSelectedGame(gameState)
             });
-        } else {
-            console.info("not polling, lock: " + this.pollLock + ", " + (this.selectedGame != null));
         }
     }
 
     updateSelectedGame(gameState) {
         console.info("updateSelectedGame");
-        console.debug(gameState);
         this.setState({selectedGame: gameState, creatingGame: false, error: null});
     }
 
