@@ -9,7 +9,7 @@ button[disabled] {
 
 button {
     display: block;
-    line-height: 1em;
+    line-height: 1.5em;
     text-align: left;
     height: 5em;
     word-wrap: break-word;
@@ -18,7 +18,7 @@ button {
 
 .choiceConfirm {
     display: block;
-    line-height: 1em;
+    line-height: 1.5em;
     text-align: left;
     height: 5em;
     word-wrap: break-word;
@@ -27,7 +27,7 @@ button {
 
 .answerCard {
     display: block;
-    line-height: 1em;
+    line-height: 1.5em;
     text-align: left;
     height: 5em;
     word-wrap: break-word;
@@ -35,7 +35,7 @@ button {
 }
 
 .questionCard {
-    line-height: 1em;
+    line-height: 1.5em;
     text-align: left;
     height: 5em;
     word-wrap: break-word;
