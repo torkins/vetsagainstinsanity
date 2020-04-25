@@ -141,13 +141,20 @@ class AnswererHand extends React.Component {
                 )
             ) : undefined;
 
-        let selectedAnswers = this.state.unconfirmedAnswerIds.map(id => {
-            let card = getAnswerCardFromId(gameState, id);
-            let unSelectAnswer = () => this.removeUnconfirmedAnswer(id); 
-            return (
-                <button className="button-primary" onClick={unSelectAnswer}>{card.text}</button>
-            );
-        });
+        let selectedAnswers = (
+            <div>
+            Selected Answers:
+            {
+                this.state.unconfirmedAnswerIds.map(id => {
+                    let card = getAnswerCardFromId(gameState, id);
+                    let unSelectAnswer = () => this.removeUnconfirmedAnswer(id); 
+                    return (
+                        <button className="button-primary" onClick={unSelectAnswer}>{card.text}</button>
+                    );
+                });
+            }
+            </>
+        );
 
         return (
             <>
