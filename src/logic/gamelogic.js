@@ -212,6 +212,10 @@ export function selectWinner(gameState, playerName) {
     return gameState;
 }
 
+export function getPoints(gameState, playerName) {
+    return getPlayerStateForPlayerName(gameState, playerName).points || 0;
+}
+
 function getPlayerStateForPlayerName(gameState, playerName) {
     for (let playerState of getPlayerStates(gameState)) {
         if (playerState.userId = playerName) return playerState;

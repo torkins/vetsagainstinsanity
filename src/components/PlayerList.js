@@ -1,15 +1,14 @@
 import React from "react";
-import {getPlayerNames} from "../logic/gamelogic"
+import {getPoints, getPlayerNames} from "../logic/gamelogic"
 
 const PlayerList = props => {
     const playerNames = getPlayerNames(props.gameState);
     console.debug("playerNames: " + JSON.stringify(playerNames));
     const playerElems = playerNames.map( (pname,index) => {
+        const points = getPoints(props.gameState, pname);
         const onClick = () => props.onPlayerClick(pname);
         return (
-            <li key={index}>
-                <button className="playerButton" onClick={onClick}>{pname}</button>
-            </li>
+            <li key={index}>{pname}: {points}</li>
         );
     });
 

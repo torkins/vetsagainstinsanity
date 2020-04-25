@@ -47,7 +47,6 @@ class Game extends React.Component {
 
             return (
                 <div className="game">
-                    <PlayerList gameState={gameState} userState={userState} onPlayerClick={changeToUser}/>
                     { isPlaying(gameState, userState.username) ?
                         <>
                         <StartGame onStartGame={this.props.onStartGame} />
@@ -60,6 +59,7 @@ class Game extends React.Component {
                         <BackToGameList onClick={onLeaveGame} />
                         </>
                     }
+                    <PlayerList gameState={gameState} userState={userState} onPlayerClick={changeToUser}/>
                 </div>
             );
         }
