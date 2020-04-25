@@ -35,11 +35,15 @@ let createAnswerersDisplay = (gameState, allUserAnswers, onChooseWinner) => {
                 );
             }
         })
-        return (
-            <>
-            <button class="chooseAnswerer button-primary disabled={disabled}" onClick={onClick}>{selectedCards}</button>
-            </>
-        );
+
+        return (!!selectedCards.length) ?
+            (
+                <>
+                <button class="chooseAnswerer button-primary disabled={disabled}" onClick={onClick}>{selectedCards}</button>
+                </>
+            ) 
+            :
+            ( <> </> );
     })
 
 };
