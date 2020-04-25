@@ -103,8 +103,8 @@ class AnswererHand extends React.Component {
         let props = this.props;
         let gameState = props.gameState;
         let userState = props.userState;
-        let isUnconfirmedAnswer = (card) => answerCardMatches(this.state.unconfirmedAnswer, card);
-        let isConfirmedAnswer = (card) => card.id in getSelectedAnswerIdsForUser(gameState, userState);
+        let isUnconfirmedAnswer = card => card.id in (this.state.unconfirmedAnswerIds || []),
+        let isConfirmedAnswer = card => card.id in getSelectedAnswerIdsForUser(gameState, userState);
         let requiredAnswers = turnIsActive(gameState) ? getRequiredAnswerCount(gameState) : 0;
         let onChooseAnswer = () => {
             props.onChooseAnswer(userState, this.state.unconfirmedAnswerIds);
@@ -152,6 +152,7 @@ class AnswererHand extends React.Component {
         return (
             <>
             {confirmArea}
+            {selectedAnswers}
             <div>Available Cards</div>
             {unselectedCards}
             </>
