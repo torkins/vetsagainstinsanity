@@ -17,7 +17,6 @@ const PlayerList = props => {
     return (
         <>
         <h4>Players</h4>
-        <div className="playerList">
             <table className="playerList twelve columns">
                 <thead>
                     <tr>
@@ -29,7 +28,6 @@ const PlayerList = props => {
                 {playerElems}
                 </tbody>
             </table>
-        </div>
         </>
     );
 }

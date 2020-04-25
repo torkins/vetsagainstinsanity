@@ -43,9 +43,13 @@ button {
 }
 
 .playerList {
-    background-color: #CCC;
-    border-radius: 4px;
+    background-color: #ddeeff;
+    border-radius: 5px;
     border: 1px solid #999;
+}
+
+.playerList td {
+    border-bottom: 1px solid #999;
 }
 
 .results {
