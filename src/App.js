@@ -64,7 +64,7 @@ class App extends React.Component {
                 if (result === false) {
                     console.info("not updated");
                 } else {
-                    this.updateSelectedGame(gameState)
+                    this.updateSelectedGame(result)
                 }
             });
         }
