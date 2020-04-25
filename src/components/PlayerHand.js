@@ -44,10 +44,16 @@ class AnswererHand extends React.Component {
         });
     }
 
-    unsetUnconfirmedAnswer() {
-        this.setState({
-            unconfirmedAnswer: []
-        });
+    removeUnconfirmedAnswer(cardId) {
+        if (card == null) {
+            this.setState({
+                unconfirmedAnswerIds: []
+            });
+        } else {
+            this.setState({
+                unconfirmedAnswerIds: this.state.unconfirmedAnswerIds.filter(id -> id != cardId)
+            });
+        }
     }
 
     render() {
@@ -59,12 +65,18 @@ class AnswererHand extends React.Component {
         let isConfirmedAnswer = (card) => answerCardMatches(getSelectedAnswer(gameState, userState), card);
         let onAnswerChoose = () => {
             props.onAnswerChoose(this.state.unconfirmedAnswer);
-            this.unsetUnconfirmedAnswer();
+            this.removeUnconfirmedAnswer();
         }
 
         let cards = getAnswerCards(gameState, userState).map( (card, index) => {
-            let onClick = () => this.setUnconfirmedAnswer(card); 
-            let buttonClass = "answerCard " + (isConfirmedAnswer(card) ? "button-primary" : (isUnconfirmedAnswer(card) ? "button-primary" : ""));
+            let onClick, buttonClass;
+            if (isConfirmedAnswer(card)) {
+                onClick = () => this.removeUnconfirmedAnswer(card.id);
+                buttonClass = "answerCard button-primary";
+            } else {
+                onClick = () => this.addUnconfirmedAnswer(card.id);
+                buttonClass = "answerCard button-primary";
+            }
             buttonClass = buttonClass + " four columns";
             return (
                 <button className={buttonClass} onClick={onClick} >{card.text}</button>
