@@ -58,8 +58,8 @@ const QuestionerHand = props => {
 
     return (
         <>
-        <h2>You're the Questioner, here's the question:</h2>
-        <h3>User Answers:</h3>
+        <h2>You're the Questioner!</h2>
+        <h3>Submitted Answers</h3>
         {userAnswers}
         </>
     );
