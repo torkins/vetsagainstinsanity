@@ -83,6 +83,7 @@ class AnswererHand extends React.Component {
             );
         });
 
+
         let confirmBtn = !!this.state.unconfirmedAnswerIds.length ? undefined : (
             <button className="button-primary choiceConfirm" onClick={onChooseAnswer}>Confirm Answer</button>
         );
@@ -90,6 +91,7 @@ class AnswererHand extends React.Component {
         return (
             <>
             <div>Answerer</div>
+            {confirmBtn}
             {cards}
             </>
         );
