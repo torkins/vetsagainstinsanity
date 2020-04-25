@@ -22,14 +22,15 @@ let createAnswerersDisplay = (gameState, allUserAnswers, onChooseWinner) => {
         const selectedCards = selectedIds.map((selectedId,idx) => {
             let card = getAnswerCardFromId(gameState, selectedId);
             let isLast = idx === selectedIds.length - 1;
+            let cardText = card.text;
 
             if (isLast) {
                 return (
-                    {card.text}
+                    {cardText}
                 );
             } else {
                 return (
-                    <>{card.text},</>
+                    <>{cardText},</>
                 );
             }
         })
