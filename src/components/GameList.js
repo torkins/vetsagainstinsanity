@@ -25,7 +25,7 @@ class GameList extends React.Component {
         Promise.all(
             fetchPendingGames(),
             fetchMyUnfinishedGames(this.props.userState.username)
-        ).then(gamelists -> {
+        ).then(gamelists => {
                 let pending = gamelists[0];
                 let unfinished = gamelists[1];
                 this.setState({
