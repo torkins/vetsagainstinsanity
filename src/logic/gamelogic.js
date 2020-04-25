@@ -143,13 +143,13 @@ let forEachGamePlayer = (gameState, fn) => {
         return gameState.started != null;
     },
     discardQuestionCard = (gameState) => {
-        gameState.questionDeck.discard([getCurrentQuestion(gameState)]);
+        discard(gameState.questionDeck,[getCurrentQuestion(gameState)]);
         setCurrentQuestion(gameState, null);
     },
     discardAnswerCards = (gameState) => {
         forEachGamePlayer(gameState, playerState => {
             let chosenAnswerCardIds = discardChosenAnswerIds(playerState);
-            gameState.answerDeck.discardById(chosenAnswerCardIds);
+            discardbyId(gameState.answerDeck, chosenAnswerCardIds);
         });
     },
     dealAnswerCards = (gameState) => {
