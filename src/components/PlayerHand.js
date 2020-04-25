@@ -53,16 +53,13 @@ const QuestionerHand = props => {
     let gameState = props.gameState;
     let userState = props.userState;
 
-    let currentQuestion = getCurrentQuestion(gameState);
-    console.debug(currentQuestion);
-
     let userAnswers = createAnswerersDisplay(gameState, getAllUserAnswers(gameState), props.onChooseWinner);
     
 
     return (
         <>
-        <div>You're the Questioner, here's the question:</div>
-        <div>User Answers</div>
+        <h2>You're the Questioner, here's the question:</h2>
+        <h3>User Answers:</h3>
         {userAnswers}
         </>
     );
@@ -175,6 +172,8 @@ const PlayerHand = props => {
     console.info("PlayerHand render");
     let gameState = props.gameState;
     let userState = props.userState;
+    let currentQuestion = getCurrentQuestion(gameState);
+    console.debug(currentQuestion);
 
     <QuestionCard question={currentQuestion} />
     if (isQuestioner(gameState, userState)) {
