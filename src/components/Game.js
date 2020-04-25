@@ -77,13 +77,17 @@ class Game extends React.Component {
 const NextTurn = props => {
     if (props.youWon) {
         return (
+            <>
             <button className="button button-primary twelve columns" onClick={props.onNextTurn}>Next Turn</button>
             <div className="results twelve columns">Congratulations, you won this round! Click 'Next Turn' to start the next turn.</div>
+            </>
         );
     } else {
         return (
+            <>
             <button className="button button-primary twelve columns" onClick={props.onNextTurn}>Next Turn</button>
             <div className="results twelve columns">{props.lastWinner} won this round, click 'Next Turn' to start the next turn.</div>
+            </>
         );
     }
 }
