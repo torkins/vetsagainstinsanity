@@ -202,6 +202,8 @@ export function getCurrentQuestion(gameState) {
     return gameState.currentQuestion;
 }
 
+export const getCurrentWinner = gameState => gameState.currentWinner; 
+
 function setCurrentWinner(gameState, playerState) {
     gameState.currentWinner = playerState.userId;
 }
@@ -233,6 +235,10 @@ function getPlayerStateForPlayerName(gameState, playerName) {
     return null;
 }
 
+export function gameHasStarted(gameState) {
+    return gameState.hasStarted;
+}
+
 export function startGame(gameState) {
     if (hasStarted(gameState)) {
         throw `Already started at ${gameState.started}!!` 
@@ -248,6 +254,10 @@ export function startGame(gameState) {
     console.info("starting game!");
     return gameState;
 };
+
+export function turnIsOver(gameState) {
+    return !!getCurrentWinner(gameState);
+}
 
 export function startNewTurn(gameState) {
     chooseNewQuestioner(gameState);

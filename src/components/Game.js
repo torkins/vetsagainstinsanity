@@ -3,7 +3,7 @@ import React from "react";
 import PlayerList from "./PlayerList"
 import PlayerHand from "./PlayerHand"
 import {UserState} from "../logic/userlogic"
-import {isAdmin, isPlaying} from "../logic/gamelogic"
+import {gameHasStarted, isAdmin, turnIsOver, isPlaying} from "../logic/gamelogic"
 /*
   fetch("https://fervent-ardinghelli-aa4089.netlify.com/.netlify/functions/create_game")
     .then(res => res.json())
@@ -45,6 +45,8 @@ class Game extends React.Component {
                     this.props.onJoinGame(gameState.gameId, userState.username);
                 },
                 onLeaveGame = () => this.props.onLeaveGame(userState.username);
+            let lastWinnerName = getCurrentWinner(gameState),
+                youWon = getCurrentWinner(gameState) == userState.username;
 
             return (
                 <div className="game">
@@ -52,8 +54,8 @@ class Game extends React.Component {
                         <>
                         {isAdmin(gameState, userState) ? <StartGame onStartGame={this.props.onStartGame}/> : <></>}
                         <LeaveGame onLeaveGame={onLeaveGame} />
-                        {turnIsOver(gameState) ? 
-                            (isAdmin(gameState, userState) ? <NextTurn onNextTurn={onNextTurn}/> : <WaitingForNextTurn />)
+                        {gameHasStarted(gameState) && turnIsOver(gameState) ? 
+                            (isAdmin(gameState, userState) ? <NextTurn onNextTurn={onNextTurn}/> : <WaitingForNextTurn lastWinner={lastWinnerName} youWon={youWon}/>)
                             :
                             <></>
                         }
@@ -69,6 +71,24 @@ class Game extends React.Component {
                 </div>
             );
         }
+    }
+}
+
+const NextTurn = props => {
+    return (
+        <button className="button button-primary" onClick={props.onNextTurn}>Next Turn</button>
+    );
+}
+
+const WaitingForNextTurn = props => {
+    if (props.youWon) {
+        return (
+            <div>Congratulations, you won this round! Waiting for creator to start next turn...</div>
+        );
+    } else {
+        return (
+            <div>{props.lastWinner} won this round, waiting for creator to start next turn...</div>
+        );
     }
 }
 
