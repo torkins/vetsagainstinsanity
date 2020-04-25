@@ -149,7 +149,7 @@ let forEachGamePlayer = (gameState, fn) => {
     discardAnswerCards = (gameState) => {
         forEachGamePlayer(gameState, playerState => {
             let chosenAnswerCardIds = discardChosenAnswerIds(playerState);
-            discardbyId(gameState.answerDeck, chosenAnswerCardIds);
+            discardById(gameState.answerDeck, chosenAnswerCardIds);
         });
     },
     dealAnswerCards = (gameState) => {
