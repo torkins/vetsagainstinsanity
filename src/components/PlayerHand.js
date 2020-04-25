@@ -109,7 +109,8 @@ class AnswererHand extends React.Component {
             props.onChooseAnswer(userState, this.state.unconfirmedAnswerIds);
             this.removeUnconfirmedAnswer();
         };
-        let sufficientAnswers = this.state.unconfirmedAnswerIds.length >= requiredAnswers || getSelectedAnswerIdsForUser(gameState, userState).length > 0;
+        let confirmedAnswers = getSelectedAnswerIdsForUser(gameState, userState) || [];
+        let sufficientAnswers = this.state.unconfirmedAnswerIds.length >= requiredAnswers || confirmedAnswers.length > 0; 
 
         let unselectedCards = getAnswerCards(gameState, userState).map( (card, index) => {
             let onClick, buttonClass, disabled;
@@ -118,11 +119,11 @@ class AnswererHand extends React.Component {
             } else {
                 if (sufficientAnswers) { 
                     onClick = () => {};
-                    buttonClass = "answerCard button-primary five columns";
+                    buttonClass = "answerCard button-primary twelve columns";
                     disabled = true;
                 } else {
                     onClick = () => this.addUnconfirmedAnswer(card.id);
-                    buttonClass = "answerCard button-primary five columns";
+                    buttonClass = "answerCard button-primary twelve columns";
                     disabled = false;
                 }
 
@@ -134,11 +135,26 @@ class AnswererHand extends React.Component {
 
         console.info("turnIsActive: " + turnIsActive(gameState));
 
+        let confirmArea;
+        if (turnIsActive(gameState)) {
+            if (!confirmedAnswers.length) {
+                confirmArea = (!sufficientAnswers) ? ( 
+                    <div className="please choose twelve columns">Please choose {requiredAnswers - this.state.unconfirmedAnswerIds.length} answers</div>
+                ) : (
+                    <button className="button-primary choiceConfirm twelve columns" onClick={onChooseAnswer}>Confirm Answer</button>
+                );
+            } else {
+                <div className="twelve columns answerSubmitted">Answer Submitted!</div>
+            }
+        } else {
+            confirmArea = undefined;
+        }
+
         let confirmArea = turnIsActive(gameState) ?
             (!sufficientAnswers ? (
                 <div>Please choose {requiredAnswers - this.state.unconfirmedAnswerIds.length} answers</div>
                 ) : (
-                    <button className="button-primary choiceConfirm five columns" onClick={onChooseAnswer}>Confirm Answer</button>
+                    <button className="button-primary choiceConfirm twelve columns" onClick={onChooseAnswer}>Confirm Answer</button>
                 )
             ) : undefined;
 
@@ -146,13 +162,13 @@ class AnswererHand extends React.Component {
             let card = getAnswerCardFromId(gameState, id);
             let unSelectAnswer = () => this.removeUnconfirmedAnswer(id); 
             return (
-                <button className="button-primary five columns" onClick={unSelectAnswer}>{card.text}</button>
+                <button className="button-primary twelve columns" onClick={unSelectAnswer}>{card.text}</button>
             );
         });
 
         let selectedAnswers = this.state.unconfirmedAnswerIds.length > 0 ? (
-            <div className="eight columns">
-                <div className="five columns">Selected Answers</div>
+            <div className="twelve columns">
+                <div className="twelve columns">Selected Answers</div>
                 {selectedCards}
             </div>
         ) : (<></>);
@@ -161,8 +177,8 @@ class AnswererHand extends React.Component {
             <>
             {confirmArea}
             {selectedAnswers}
-            <div className="eight columns">Available Cards</div>
-            <div className="possibleAnswers ten columns">{unselectedCards}</div>
+            <div className="twelve columns">Available Cards</div>
+            <div className="possibleAnswers twelve columns">{unselectedCards}</div>
             </>
         );
     }
