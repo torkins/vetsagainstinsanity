@@ -103,7 +103,13 @@ class AnswererHand extends React.Component {
         let props = this.props;
         let gameState = props.gameState;
         let userState = props.userState;
-        let isUnconfirmedAnswer = card => card.id in (this.state.unconfirmedAnswerIds || []);
+        let isUnconfirmedAnswer = card => {
+            console.info("isConfirmedAnswer(" + card.id + ")");
+            console.info("state: " + JSON.stringify(this.state.unconfirmedAnswerIds));
+            let res = card.id in (this.state.unconfirmedAnswerIds || []);
+            console.info("res: " + res);
+            return res;
+        };
         let isConfirmedAnswer = card => card.id in getSelectedAnswerIdsForUser(gameState, userState);
         let requiredAnswers = turnIsActive(gameState) ? getRequiredAnswerCount(gameState) : 0;
         let onChooseAnswer = () => {
@@ -134,7 +140,7 @@ class AnswererHand extends React.Component {
         });
 
         let confirmArea = turnIsActive(gameState) ?
-            (this.state.unconfirmedAnswerIds.length < requiredAnswers ? (
+            (sufficientAnswers ? (
                 <div>Please choose {requiredAnswers - this.state.unconfirmedAnswerIds.length} answers</div>
                 ) : (
                     <button className="button-primary choiceConfirm" onClick={onChooseAnswer}>Confirm Answer</button>

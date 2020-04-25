@@ -1,4 +1,9 @@
 
+input[type="button"]:disabled {
+    border: 1px solid grey;
+    background-color: grey;
+}
+
 .answerCard {
     line-height: 1em;
     text-align: left;
