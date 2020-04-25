@@ -151,9 +151,9 @@ class AnswererHand extends React.Component {
         });
 
         let selectedAnswers = this.state.unconfirmedAnswerIds.length > 0 ? (
-            <div>
-            Selected Answers
-            {selectedCards}
+            <div className="eight columns">
+                <div className="five columns">Selected Answers</div>
+                {selectedCards}
             </div>
         ) : (<></>);
 
@@ -161,8 +161,8 @@ class AnswererHand extends React.Component {
             <>
             {confirmArea}
             {selectedAnswers}
-            <div>Available Cards</div>
-            <div className="possibleAnswers">{unselectedCards}</div>
+            <div className="eight columns">Available Cards</div>
+            <div className="possibleAnswers ten columns">{unselectedCards}</div>
             </>
         );
     }
