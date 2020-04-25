@@ -51,7 +51,7 @@ class AnswererHand extends React.Component {
             });
         } else {
             this.setState({
-                unconfirmedAnswerIds: this.state.unconfirmedAnswerIds.filter(id -> id != cardId)
+                unconfirmedAnswerIds: this.state.unconfirmedAnswerIds.filter(id => id != cardId)
             });
         }
     }
