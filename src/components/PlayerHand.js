@@ -63,8 +63,8 @@ class AnswererHand extends React.Component {
         let userState = props.userState;
         let isUnconfirmedAnswer = (card) => answerCardMatches(this.state.unconfirmedAnswer, card);
         let isConfirmedAnswer = (card) => answerCardMatches(getSelectedAnswer(gameState, userState), card);
-        let onAnswerChoose = () => {
-            props.onAnswerChoose(this.state.unconfirmedAnswer);
+        let onChooseAnswer = () => {
+            props.onChooseAnswer(userState, this.state.unconfirmedAnswerIds);
             this.removeUnconfirmedAnswer();
         }
 
@@ -83,8 +83,8 @@ class AnswererHand extends React.Component {
             );
         });
 
-        let confirmBtn = this.state.unconfirmedAnswer == null ? undefined : (
-            <button className="choiceConfirm" onClick={onAnswerChoose}>Confirm Answer</button>
+        let confirmBtn = !!this.state.unconfirmedAnswerIds.length ? undefined : (
+            <button className="button-primary choiceConfirm" onClick={onChooseAnswer}>Confirm Answer</button>
         );
 
         return (

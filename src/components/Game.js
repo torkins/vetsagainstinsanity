@@ -40,7 +40,6 @@ class Game extends React.Component {
                 console.info(`changeToUser: ${username}`);
                 this.setState({ userState: new UserState(username) });
             };
-            let onAnswerChoose = () => { };
             let onJoinGame = () => {
                     this.props.onJoinGame(gameState.gameId, userState.username);
                 },
@@ -53,7 +52,7 @@ class Game extends React.Component {
                         <>
                         <StartGame onStartGame={this.props.onStartGame} />
                         <LeaveGame onLeaveGame={onLeaveGame} />
-                        <PlayerHand gameState={gameState} userState={userState} onAnswerChoose={onAnswerChoose}/>
+                        <PlayerHand gameState={gameState} userState={userState} onAnswerChoose={this.props.onAnswerChoose}/>
                         </>
                         :
                         <>

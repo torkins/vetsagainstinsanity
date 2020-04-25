@@ -5,7 +5,7 @@ import { IdentityContextProvider, useIdentityContext } from 'react-netlify-ident
 import Game from './components/Game';
 import GameList from './components/GameList';
 import { Login, Logout, useLoggedIn, useLoggedInUsername } from './Auth';
-import { createNewGame, joinGame, deleteGame, fetchGameState, fetchGameStateIfNewer, updateGameState, startGame, removeUserFromGame } from './logic/gamelogic'
+import { createNewGame, joinGame, chooseUserAnswers, deleteGame, fetchGameState, fetchGameStateIfNewer, updateGameState, startGame, removeUserFromGame } from './logic/gamelogic'
 import { UserState } from './logic/userlogic'
 import { withCookies, Cookies } from 'react-cookie'
 import { instanceOf } from 'prop-types';
@@ -89,6 +89,7 @@ class App extends React.Component {
         let applyGameState = gameState => updateGameState(gameState).then(updateSelectedGame);
 
         let gameProps = {
+            onChooseAnswer: (userState, answerIds) => applyGameState(chooseUserAnswers(this.state.selectedGame, userState, answerIds).then(applyGameState),
             onChooseGame: this.onChooseGame.bind(this),
             onCreateGame: (name, userId) => {
                 this.setState({

@@ -233,6 +233,12 @@ export class PlayerState {
     }
 }
 
+export function chooseUserAnswers(gameState, userState, selectedAnswerIds) {
+    var playerState = getPlayerState(gameState, userState);
+    selectCards(playerState, selectdAnswerIds);
+    return gameState;
+}
+
 export function getPlayerName(playerState) { return playerState.userId; }
 
 let selectCards = (playerState, cardIds) => {
