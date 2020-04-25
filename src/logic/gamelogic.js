@@ -24,8 +24,8 @@ export function getSelectedAnswerIdsForUser(gameState, userState) {
 export function getRequiredAnswerCount(gameState) {
     let currentQuestion = getCurrentQuestion(gameState),
         text = currentQuestion.text;
-    //if no Blanks, requires 1 answer
-    return (text.match(/\(Blank\)/g) || [0]).length;
+    //if no blanks, requires 1 answer
+    return (text.match(/\(blank\)/g) || [0]).length;
 }
 
 export function allUsersReady(gameState) {
