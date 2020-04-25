@@ -26,7 +26,7 @@ let createAnswerersDisplay = (gameState, allUserAnswers, onChooseWinner) => {
 
             if (isLast) {
                 return (
-                    {cardText}
+                    <>{cardText}</>
                 );
             } else {
                 return (
