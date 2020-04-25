@@ -16,7 +16,7 @@ exports.handler = function(event, context, callback) {
         q.Paginate(match)
     ).then( (ret) => {
         let gameTs = ret.data;
-        console.info(ts + " < " + gameTs + " = " (ts < gameTs));
+        console.info(ts + " < " + gameTs + " = " + (ts < gameTs));
         if (ts < gameTs) {
             client.query(q.Get(match))
             .then( (ret) => callback(null, {
