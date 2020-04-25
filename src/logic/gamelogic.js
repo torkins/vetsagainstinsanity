@@ -209,7 +209,7 @@ function setCurrentWinner(gameState, playerState) {
     gameState.currentWinner = playerState.userId;
     return gameState;
 }
-function clearCurrentWinner(gameState, playerState) {
+function clearCurrentWinner(gameState) {
     gameState.currentWinner = undefined;
     return gameState;
 }
@@ -271,6 +271,7 @@ export function startNewTurn(gameState) {
     chooseNewQuestioner(gameState);
     dealQuestionCard(gameState);
     dealAnswerCards(gameState);
+    console.info("Started new turn");
     return gameState;
 };
 
@@ -278,6 +279,7 @@ export function endTurn(gameState) {
     discardQuestionCard(gameState);
     discardAnswerCards(gameState);
     clearCurrentWinner(gameState);
+    console.info("Ended turn");
     return gameState;
 };
 
