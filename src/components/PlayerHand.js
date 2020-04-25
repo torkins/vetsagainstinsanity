@@ -1,5 +1,5 @@
 import React from "react";
-import {isQuestioner, getCurrentQuestion, getAllUserAnswers, getAnswerCards, answerCardMatches, getSelectedAnswerIdsForUser} from "../logic/gamelogic"
+import {isQuestioner, getCurrentQuestion, getAllUserAnswers, getAnswerCards, getAnswerCardFromId, answerCardMatches, getSelectedAnswerIdsForUser} from "../logic/gamelogic"
 import {getUserName} from "../logic/userlogic"
 
 const QuestionCard = props => {
@@ -8,7 +8,7 @@ const QuestionCard = props => {
     );
 }
 
-let createAnswerersDisplay = allUserAnswers => {
+let createAnswerersDisplay = (gameState, allUserAnswers) => {
     for (const entry of allUserAnswers.entries()) {
         let [username, selectedIds] = entry;
         console.info(username + " selected " + selectedIds);
@@ -40,7 +40,7 @@ const QuestionerHand = props => {
     let currentQuestion = getCurrentQuestion(gameState);
     console.debug(currentQuestion);
 
-    let userAnswers = createAnswerersDisplay(getAllUserAnswers(gameState));
+    let userAnswers = createAnswerersDisplay(gameState, getAllUserAnswers(gameState));
     
 
     return (
