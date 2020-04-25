@@ -4,7 +4,7 @@ import {getUserName} from "../logic/userlogic"
 
 const QuestionCard = props => {
     return (
-        <div>{props.question.text}</div>
+        <div className="questionCard">{props.question.text}</div>
     );
 }
 
@@ -62,7 +62,6 @@ const QuestionerHand = props => {
     return (
         <>
         <div>You're the Questioner, here's the question:</div>
-        <QuestionCard question={currentQuestion} />
         <div>User Answers</div>
         {userAnswers}
         </>
@@ -177,6 +176,7 @@ const PlayerHand = props => {
     let gameState = props.gameState;
     let userState = props.userState;
 
+    <QuestionCard question={currentQuestion} />
     if (isQuestioner(gameState, userState)) {
         return ( <QuestionerHand gameState={gameState} userState={userState} onChooseWinner={props.onChooseWinner}/> )
     } else {
