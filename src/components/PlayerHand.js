@@ -23,6 +23,7 @@ let createAnswerersDisplay = (gameState, allUserAnswers, onChooseWinner) => {
             let card = getAnswerCardFromId(gameState, selectedId);
             let isLast = idx === selectedIds.length - 1;
             let cardText = card.text;
+            console.info("cardText: " + cardText);
 
             if (isLast) {
                 return (
