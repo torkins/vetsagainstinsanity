@@ -52,7 +52,7 @@ class Game extends React.Component {
                 <div className="game">
                     { isPlaying(gameState, userState.username) ?
                         <>
-                        {isAdmin(gameState, userState) && !gameHasStarted(gameStart) ? <StartGame onStartGame={this.props.onStartGame}/> : <></>}
+                        {isAdmin(gameState, userState) && !gameHasStarted(gameState) ? <StartGame onStartGame={this.props.onStartGame}/> : <></>}
                         <LeaveGame onLeaveGame={onLeaveGame} />
                         {(gameHasStarted(gameState) && turnIsOver(gameState)) ? 
                             (isAdmin(gameState, userState) ? <NextTurn onNextTurn={this.props.onNextTurn}/> : <WaitingForNextTurn lastWinner={lastWinnerName} youWon={youWon}/>)
