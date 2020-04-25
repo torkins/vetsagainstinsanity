@@ -65,8 +65,6 @@ const QuestionerHand = props => {
     let userAnswerOptions = createAnswerersDisplay(gameState, allUserAnswers, props.onChooseWinner);
     let turnActive = turnIsActive(gameState);
     let currentWinner = turnActive ? null : getCurrentWinner(gameState);
-    let winningCards: 
-    
 
     return (
         <>
