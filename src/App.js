@@ -66,8 +66,16 @@ class App extends React.Component {
                 } else {
                     this.updateSelectedGame(result)
                 }
+            }, err => {
+                this.clearSelectedGame();
             });
         }
+    }
+
+    clearSelectedGame() {
+        const { cookies } = this.props;
+        cookies.set('selectedGameId', null, { path: '/' });
+        this.setState({selectedGame: null, creatingGame: false, error: null});
     }
 
     updateSelectedGame(gameState) {
@@ -77,10 +85,9 @@ class App extends React.Component {
 
     onChooseGame(gameId) {
         console.info("onChooseGame(" + gameId + ")");
+        const { cookies } = this.props;
+        cookies.set('selectedGameId', gameId, { path: '/' });
         if (gameId != null) {
-            const { cookies } = this.props;
-
-            cookies.set('selectedGameId', gameId, { path: '/' });
             fetchGameState(gameId).then(this.updateSelectedGame.bind(this));
         }
     }
@@ -116,10 +123,10 @@ class App extends React.Component {
             onStartGame: () => applyGameState(startGame(this.state.selectedGame)),
             onLeaveGame: (username) => {
                 updateGameState(removeUserFromGame(this.state.selectedGame, username));
-                updateSelectedGame(null);
+                this.clearSelectedGame();
             },
             onDeleteGame: (gameId) => {
-                deleteGame(gameId).then( () => updateSelectedGame(null) );
+                deleteGame(gameId).then( () => this.clearSelectedGame() );
             },
             onJoinGame: (gameId, userId) => fetchGameState(gameId).then(game => joinGame(game, userId)).then(applyGameState),
             applyGameState
