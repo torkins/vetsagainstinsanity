@@ -22,10 +22,14 @@ export function getAnswerCards(gameState, userState) {
     return playerState.cardIds.map( cardId => getCard(cardId, gameState) );
 }
 
-export function getSelectedAnswer(gameState, userState) {
+export function getSelectedAnswerIdsForUser(gameState, userState) {
     let playerState = getPlayerState(gameState, userState);
-    return playerState.selectedAnswer == null ? null : getCardFromDeck(playerState.selectedAnswer, gameState);
+    return getSelectedAnswerIdsForPlayer(gameState, playerState);
 }
+
+let getSelectedAnswerIdsForPlayer = (gameState, playerState) => {
+    return playerState.selectedAnswers || []; 
+};
 
 function cardMatches(card1, card2) {
     return card1 != null && card2 != null && card1.id == card2.id && card1.text == card2.text;
@@ -296,6 +300,16 @@ function insertNewGame(gameState) {
     })
     .then(res => res.json())
     .then(res => gameResponseToGameState(res)); 
+}
+
+let getPlayerStates = gameState => gameState.players;
+
+export function getAllUserAnswers(gameState) {
+    let result = new Map();
+    getPlayerStates(gameState).forEach( playerState => {
+        result.set(getPlayerName(playerState), getSelectedAnswerIdsForPlayer(gameState, playerState));
+    });
+    return result;
 }
 
 export function deleteGame(refId)  {
