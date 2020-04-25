@@ -79,7 +79,6 @@ const QuestionerHand = props => {
             <>
             <h3>Winner: {getCurrentWinner(gameState)}</h3>
             <h3>{getUserAnswer(getCurrentWinner(gameState))}</h3>
-            </h>
             </>
         );
     }
