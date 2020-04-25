@@ -101,7 +101,7 @@ class AnswererHand extends React.Component {
             if (isUnconfirmedAnswer(card)) {
                 onClick = () => this.removeUnconfirmedAnswer(card.id);
                 buttonClass = "answerCard unconfirmedAnswer button-primary";
-            } else if (isConfirmedAnswer(card) {
+            } else if (isConfirmedAnswer(card)) {
                 onClick = () => { alert("You have already confirmed your answers!"); };
                 buttonClass = "answerCard confirmedAnswer button-primary";
             } else {
