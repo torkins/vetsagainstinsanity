@@ -8,15 +8,25 @@ const PlayerList = props => {
         const points = getPoints(props.gameState, pname);
         const onClick = () => props.onPlayerClick(pname);
         return (
-            <div className="playerName ten columns" key={index}>{pname}: <b>{points}</b></div>
+            <tr>
+                <td className="playerName">{pname}</td><td className="playerPoints">{points}</td>
+            </tr>
         );
     });
 
     return (
-        <div className="playerList twelve columns">
-            Player List
+        <h4>Players</h4>
+        <table className="playerList twelve columns">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
             {playerElems}
-        </div>
+            </tbody>
+        </table>
     );
 }
 
