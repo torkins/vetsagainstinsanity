@@ -28,7 +28,9 @@ let createAnswerersDisplay = (gameState, allUserAnswers) => {
                 );
             } else {
                 return (
+                    <>
                     <span class="playerAnswer">{card.text}</span><span>,</span>
+                    </>
                 );
             }
         })
