@@ -110,14 +110,13 @@ let recycle = (deck) => {
         return dealtCards;
     },
     getCardById = (deck, id) => {
-        console.debug(deck);
         return deck.cards.find(c => c.id === id);
     },
     discard = (deck, cards) => {
         deck.discard = deck.discard.concat(cards);
     },
     discardById = (deck, cardIds) => {
-        let cards = cardIds.map(id => getCardById(id));
+        let cards = cardIds.map(id => getCardById(deck, id));
         deck.discard = deck.discard.concat(cards);
     };
 
