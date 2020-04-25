@@ -58,7 +58,7 @@ const QuestionerHand = props => {
         for (const entry of allUserAnswers) {
             const [entryUser, selectedIds] = entry;
             if (username == entryUser) {
-                return selectedIds.map(id => getAnswerCardFromId(gameState, id)).join(", ");
+                return selectedIds.map(id => getAnswerCardFromId(gameState, id).text).join(", ");
             }
         }
     };
@@ -69,16 +69,20 @@ const QuestionerHand = props => {
     if (turnIsActive(gameState)) {
         return (
             <>
-            <h3>You're the Questioner!</h3>
-            <h3>Submitted Answers</h3>
-            {userAnswerOptions}
+            <div class="twelve columns">
+                <h3>You're the Questioner!</h3>
+                <h3>Submitted Answers</h3>
+                {userAnswerOptions}
+            </div>
             </>
         );
     } else {
         return (
             <>
-            <h3>Winner: {getCurrentWinner(gameState)}</h3>
-            <h3>{getUserAnswer(getCurrentWinner(gameState))}</h3>
+            <div class="twelve columns">
+                <h3>Winner: {getCurrentWinner(gameState)}</h3>
+                <h3>{getUserAnswer(getCurrentWinner(gameState))}</h3>
+            </div>
             </>
         );
     }
