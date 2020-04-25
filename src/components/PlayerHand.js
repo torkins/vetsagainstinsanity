@@ -1,5 +1,5 @@
 import React from "react";
-import {isQuestioner, getCurrentQuestion, getAllUserAnswers, getAnswerCards, getAnswerCardFromId, answerCardMatches, getSelectedAnswerIdsForUser} from "../logic/gamelogic"
+import {isQuestioner, allUsersReady, getCurrentQuestion, getAllUserAnswers, getAnswerCards, getAnswerCardFromId, answerCardMatches, getSelectedAnswerIdsForUser} from "../logic/gamelogic"
 import {getUserName} from "../logic/userlogic"
 
 const QuestionCard = props => {
@@ -14,17 +14,27 @@ let createAnswerersDisplay = (gameState, allUserAnswers) => {
         console.info(username + " selected " + selectedIds);
     }
 
+    let disabled = !allUsersReady(gameState);
+
     return Array.from(allUserAnswers.entries(), entry => {
         let [username, selectedIds] = entry;
-        let selectedCards = selectedIds.map(selectedId => {
+        let selectedCards = selectedIds.map((selectedId,idx) => {
             let card = getAnswerCardFromId(gameState, selectedId);
-            return (
-                <div class="playerAnswer">{card.text}</div>
-            );
+            let isLast = idx === selectedIds.length - 1;
+
+            if (isLast) {
+                return (
+                    <span class="playerAnswer">{card.text}</span>
+                );
+            } else {
+                return (
+                    <span class="playerAnswer">{card.text}</span><span>,</span>
+                );
+            }
         })
         return (
             <>
-            <div class="playerAnswers">{username}:</div>
+            <button class="chooseAnswerer button-primary disabled={disabled}">{username}:</div>
             {selectedCards}
             </>
         );
@@ -45,8 +55,9 @@ const QuestionerHand = props => {
 
     return (
         <>
-        <div>Questioner</div>
+        <div>You're the Questioner, here's the question:</div>
         <QuestionCard question={currentQuestion} />
+        <div>User Answers</div>
         {userAnswers}
         </>
     );

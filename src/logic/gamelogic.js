@@ -27,6 +27,21 @@ export function getSelectedAnswerIdsForUser(gameState, userState) {
     return getSelectedAnswerIdsForPlayer(gameState, playerState);
 }
 
+export function getRequiredAnswerCount(gameState) {
+    let currentQuestion = getCurrentQuestion(gameState),
+        text = currentQuestion.text;
+    return (text.match(/\(Blank\)/g) || []).length;
+}
+
+export function allUsersReady(gameState) {
+    let requiredAnswers = getRequiredAnswerCount(gameState);
+
+    for (let entry of getAllUserAnswers(gameState)) { 
+        let [userName, selectedAnswerIds] = entry;
+        if (selectedAnswerIds.length < requiredAnswers) return false;
+    }
+}
+
 let getSelectedAnswerIdsForPlayer = (gameState, playerState) => {
     return playerState.selectedAnswers || []; 
 };

@@ -50,7 +50,7 @@ class App extends React.Component {
         };
 
         this.onChooseGame(cookies.get('selectedGameId'));
-        this.pollTimer = setInterval( () => this.pollGame(), 1000);
+        this.pollTimer = setInterval( () => this.pollGame(), 2000);
         this.pollLock = false;
     }
 
