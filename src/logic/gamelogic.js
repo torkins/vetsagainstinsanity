@@ -235,7 +235,7 @@ export class PlayerState {
 
 export function chooseUserAnswers(gameState, userState, selectedAnswerIds) {
     var playerState = getPlayerState(gameState, userState);
-    selectCards(playerState, selectdAnswerIds);
+    selectCards(playerState, selectedAnswerIds);
     return gameState;
 }
 
