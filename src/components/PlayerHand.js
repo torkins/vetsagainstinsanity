@@ -1,5 +1,5 @@
 import React from "react";
-import {isQuestioner, allUsersReady, getCurrentQuestion, getAllUserAnswers, getAnswerCards, getAnswerCardFromId, answerCardMatches, getSelectedAnswerIdsForUser} from "../logic/gamelogic"
+import {getRequiredAnswerCount, isQuestioner, allUsersReady, getCurrentQuestion, getAllUserAnswers, getAnswerCards, getAnswerCardFromId, answerCardMatches, getSelectedAnswerIdsForUser} from "../logic/gamelogic"
 import {getUserName} from "../logic/userlogic"
 
 const QuestionCard = props => {
@@ -105,6 +105,7 @@ class AnswererHand extends React.Component {
         let userState = props.userState;
         let isUnconfirmedAnswer = (card) => answerCardMatches(this.state.unconfirmedAnswer, card);
         let isConfirmedAnswer = (card) => card.id in getSelectedAnswerIdsForUser(gameState, userState);
+        let requiredAnswers = getRequiredAnswerCount(gameState);
         let onChooseAnswer = () => {
             props.onChooseAnswer(userState, this.state.unconfirmedAnswerIds);
             this.removeUnconfirmedAnswer();
@@ -129,14 +130,16 @@ class AnswererHand extends React.Component {
         });
 
 
-        let confirmBtn = !!this.state.unconfirmedAnswerIds.length ? (
+        let confirmArea = this.state.unconfirmedAnswerIds.length < requiredAnswers ? (
+            <div>Please choose {requiredAnswers - this.state.unconfirmedAnswerIds.length} answers</div>
+        ) : (
             <button className="button-primary choiceConfirm" onClick={onChooseAnswer}>Confirm Answer</button>
-        ) : undefined;
+        );
 
         return (
             <>
-            <div>Answerer</div>
-            {confirmBtn}
+            {confirmArea}
+            <div>Available Cards</div>
             {cards}
             </>
         );
