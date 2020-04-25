@@ -17,17 +17,19 @@ const PlayerList = props => {
     return (
         <>
         <h4>Players</h4>
-        <table className="playerList twelve columns">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Points</th>
-                </tr>
-            </thead>
-            <tbody>
-            {playerElems}
-            </tbody>
-        </table>
+        <div className="playerList">
+            <table className="playerList twelve columns">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {playerElems}
+                </tbody>
+            </table>
+        </div>
         </>
     );
 }
