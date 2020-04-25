@@ -10,7 +10,7 @@ exports.handler = function(event, context, callback) {
 
     client.query(
       q.Delete(
-        q.Collection('GameState'), data.refId
+        q.Ref(q.Collection('GameState'), data.refId)
       )
     )
     .then(
