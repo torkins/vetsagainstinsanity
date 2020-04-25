@@ -8,7 +8,7 @@ const PlayerList = props => {
         const points = getPoints(props.gameState, pname);
         const onClick = () => props.onPlayerClick(pname);
         return (
-            <li key={index}>{pname}: {points}</li>
+            <div className="playerName ten columns" key={index}>{pname}: <b>{points}</b></div>
         );
     });
 
