@@ -153,7 +153,7 @@ class AnswererHand extends React.Component {
             <div>
             Selected Answers:
             {selectedCards}
-            </>
+            </div>
         );
 
         return (
