@@ -175,11 +175,20 @@ const PlayerHand = props => {
     let currentQuestion = getCurrentQuestion(gameState);
     console.debug(currentQuestion);
 
-    <QuestionCard question={currentQuestion} />
     if (isQuestioner(gameState, userState)) {
-        return ( <QuestionerHand gameState={gameState} userState={userState} onChooseWinner={props.onChooseWinner}/> )
+        return ( 
+            <>
+            <QuestionCard question={currentQuestion} />
+            <QuestionerHand gameState={gameState} userState={userState} onChooseWinner={props.onChooseWinner}/> 
+            </>
+        )
     } else {
-        return ( <AnswererHand gameState={gameState} userState={userState} onChooseAnswer={props.onChooseAnswer}/> )
+        return ( 
+            <>
+            <QuestionCard question={currentQuestion} />
+            <AnswererHand gameState={gameState} userState={userState} onChooseAnswer={props.onChooseAnswer}/> 
+            </>
+        )
     }
 };
 
