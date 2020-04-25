@@ -4,7 +4,8 @@ button[disabled] {
     background-color: grey !important;
 }
 
-.answerCard {
+.choiceConfirm, .answerCard {
+    display: block;
     line-height: 1em;
     text-align: left;
     height: 5em;

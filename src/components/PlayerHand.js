@@ -25,20 +25,17 @@ let createAnswerersDisplay = (gameState, allUserAnswers, onChooseWinner) => {
 
             if (isLast) {
                 return (
-                    <span class="playerAnswer">{card.text}</span>
+                    {card.text}
                 );
             } else {
                 return (
-                    <>
-                    <span class="playerAnswer">{card.text}</span><span>,</span>
-                    </>
+                    <>{card.text},</>
                 );
             }
         })
         return (
             <>
-            <button class="chooseAnswerer button-primary disabled={disabled}" onClick={onClick}>{username}:</button>
-            {selectedCards}
+            <button class="chooseAnswerer button-primary disabled={disabled}" onClick={onClick}>{selectedCards}</button>
             </>
         );
     })
@@ -153,7 +150,7 @@ class AnswererHand extends React.Component {
 
         let selectedAnswers = this.state.unconfirmedAnswerIds.length > 0 ? (
             <div>
-            Selected Answers:
+            Selected Answers
             {selectedCards}
             </div>
         ) : (<></>);
