@@ -8,7 +8,7 @@ const QuestionCard = props => {
     );
 }
 
-let createAnswerersDisplay = (gameState, allUserAnswers) => {
+let createAnswerersDisplay = (gameState, allUserAnswers, onChooseWinner) => {
     for (const entry of allUserAnswers.entries()) {
         let [username, selectedIds] = entry;
         console.info(username + " selected " + selectedIds);
@@ -18,7 +18,8 @@ let createAnswerersDisplay = (gameState, allUserAnswers) => {
 
     return Array.from(allUserAnswers.entries(), entry => {
         let [username, selectedIds] = entry;
-        let selectedCards = selectedIds.map((selectedId,idx) => {
+        const onClick = () => onChooseWinner(username);
+        const selectedCards = selectedIds.map((selectedId,idx) => {
             let card = getAnswerCardFromId(gameState, selectedId);
             let isLast = idx === selectedIds.length - 1;
 
@@ -36,7 +37,7 @@ let createAnswerersDisplay = (gameState, allUserAnswers) => {
         })
         return (
             <>
-            <button class="chooseAnswerer button-primary disabled={disabled}">{username}:</button>
+            <button class="chooseAnswerer button-primary disabled={disabled}" onClick={onClick}>{username}:</button>
             {selectedCards}
             </>
         );
@@ -52,7 +53,7 @@ const QuestionerHand = props => {
     let currentQuestion = getCurrentQuestion(gameState);
     console.debug(currentQuestion);
 
-    let userAnswers = createAnswerersDisplay(gameState, getAllUserAnswers(gameState));
+    let userAnswers = createAnswerersDisplay(gameState, getAllUserAnswers(gameState), props.onChooseWinner);
     
 
     return (
@@ -148,7 +149,7 @@ const PlayerHand = props => {
     let userState = props.userState;
 
     if (isQuestioner(gameState, userState)) {
-        return ( <QuestionerHand gameState={gameState} userState={userState}/> )
+        return ( <QuestionerHand gameState={gameState} userState={userState} onChooseWinner={props.onChooseWinner}/> )
     } else {
         return ( <AnswererHand gameState={gameState} userState={userState} onChooseAnswer={props.onChooseAnswer}/> )
     }
