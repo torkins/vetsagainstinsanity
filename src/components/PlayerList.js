@@ -15,6 +15,7 @@ const PlayerList = props => {
     });
 
     return (
+        <>
         <h4>Players</h4>
         <table className="playerList twelve columns">
             <thead>
@@ -27,6 +28,7 @@ const PlayerList = props => {
             {playerElems}
             </tbody>
         </table>
+        </>
     );
 }
 
