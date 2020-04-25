@@ -150,14 +150,6 @@ class AnswererHand extends React.Component {
             confirmArea = undefined;
         }
 
-        let confirmArea = turnIsActive(gameState) ?
-            (!sufficientAnswers ? (
-                <div>Please choose {requiredAnswers - this.state.unconfirmedAnswerIds.length} answers</div>
-                ) : (
-                    <button className="button-primary choiceConfirm twelve columns" onClick={onChooseAnswer}>Confirm Answer</button>
-                )
-            ) : undefined;
-
         let selectedCards = this.state.unconfirmedAnswerIds.map(id => {
             let card = getAnswerCardFromId(gameState, id);
             let unSelectAnswer = () => this.removeUnconfirmedAnswer(id); 
