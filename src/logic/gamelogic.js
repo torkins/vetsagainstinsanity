@@ -210,7 +210,7 @@ function setCurrentWinner(gameState, playerState) {
     return gameState;
 }
 function clearCurrentWinner(gameState) {
-    gameState.currentWinner = undefined;
+    gameState.currentWinner = null;
     return gameState;
 }
 
