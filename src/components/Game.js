@@ -3,7 +3,7 @@ import React from "react";
 import PlayerList from "./PlayerList"
 import PlayerHand from "./PlayerHand"
 import {UserState} from "../logic/userlogic"
-import {isPlaying} from "../logic/gamelogic"
+import {isAdmin, isPlaying} from "../logic/gamelogic"
 /*
   fetch("https://fervent-ardinghelli-aa4089.netlify.com/.netlify/functions/create_game")
     .then(res => res.json())
@@ -50,8 +50,13 @@ class Game extends React.Component {
                 <div className="game">
                     { isPlaying(gameState, userState.username) ?
                         <>
-                        <StartGame onStartGame={this.props.onStartGame} />
+                        {isAdmin(gameState, userState) ? <StartGame onStartGame={this.props.onStartGame}/> : <></>}
                         <LeaveGame onLeaveGame={onLeaveGame} />
+                        {turnIsOver(gameState) ? 
+                            {isAdmin(gameState, userState) ? <NextTurn onNextTurn={onNextTurn}/> : <WaitingForNextTurn /> }
+                            :
+                            <></>
+                        }
                         <PlayerHand gameState={gameState} userState={userState} onChooseAnswer={this.props.onChooseAnswer} onChooseWinner={this.props.onChooseWinner}/>
                         </>
                         :

@@ -7,6 +7,8 @@ let isPlayerQuestioner = (gameState, playerState) => getCurrentQuestioner(gameSt
 
 export const getPlayerState = (gameState, userState) => getPlayerStateForPlayerName(gameState, getUserName(userState));
 
+export const isAdmin = (gameState, userState) => gameState.creatorId == getUserName(userState);
+
 export function getAnswerCards(gameState, userState) {
     console.info("getAnswerCards");
     let playerState = getPlayerState(gameState, userState);
@@ -121,6 +123,7 @@ export class GameState {
     constructor(name, creatorId, answerDeck, questionDeck) {
         this.ref = null;
         this.gameId = uuidv4();
+        this.creatorId = creatorId;
         this.gameName = name;
         this.gameType = answerDeck.gameType;
         this.players = [new PlayerState(creatorId)];
