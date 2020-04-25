@@ -35,12 +35,13 @@ button {
 }
 
 .questionCard {
-    line-height: 1.5em;
+    line-height: 1.2em;
     text-align: left;
     height: 5em;
     word-wrap: break-word;
     white-space:normal;
     display: block;
+    margin-bottom:2em;
 }
 
 .playerList {
