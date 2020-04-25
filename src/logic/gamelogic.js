@@ -171,7 +171,7 @@ let forEachGamePlayer = (gameState, fn) => {
         let current = getCurrentQuestioner(gameState);
         if (!!current) {
             let playerIdx = gameState.players.findIndex(playerState => playerState.userId == current.userId);
-            newIdx = playerIdx == gameState.players.length - 1 ? 0 : playerIdx + 1;
+            let newIdx = playerIdx == gameState.players.length - 1 ? 0 : playerIdx + 1;
             setCurrentQuestioner(gameState, gameState.players[newIdx]);
         } else {
             let qIdx = Math.floor(Math.random()*Math.floor(gameState.players.length))
