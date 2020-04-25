@@ -261,6 +261,11 @@ export function turnIsOver(gameState) {
     return !!getCurrentWinner(gameState);
 }
 
+export function turnIsActive(gameState) {
+    return gameHasStarted(gameState) && !turnIsOver(gameState);
+}
+
+
 export function startNewTurn(gameState) {
     chooseNewQuestioner(gameState);
     dealQuestionCard(gameState);

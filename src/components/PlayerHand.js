@@ -1,5 +1,5 @@
 import React from "react";
-import {getRequiredAnswerCount, isQuestioner, allUsersReady, getCurrentQuestion, getAllUserAnswers, getAnswerCards, getAnswerCardFromId, answerCardMatches, getSelectedAnswerIdsForUser} from "../logic/gamelogic"
+import {turnIsActive, getRequiredAnswerCount, isQuestioner, allUsersReady, getCurrentQuestion, getAllUserAnswers, getAnswerCards, getAnswerCardFromId, answerCardMatches, getSelectedAnswerIdsForUser} from "../logic/gamelogic"
 import {getUserName} from "../logic/userlogic"
 
 const QuestionCard = props => {
@@ -130,7 +130,7 @@ class AnswererHand extends React.Component {
         });
 
 
-        let confirmArea = this.state.unconfirmedAnswerIds.length < requiredAnswers ? (
+        let confirmArea = (turnIsActive(gameState) && this.state.unconfirmedAnswerIds.length < requiredAnswers) ? (
             <div>Please choose {requiredAnswers - this.state.unconfirmedAnswerIds.length} answers</div>
         ) : (
             <button className="button-primary choiceConfirm" onClick={onChooseAnswer}>Confirm Answer</button>
