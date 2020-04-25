@@ -293,6 +293,7 @@ function insertNewGame(gameState) {
 }
 
 export function deleteGame(refId)  {
+    console.info("refid: " + refId);
     return fetch(`https://fervent-ardinghelli-aa4089.netlify.app/.netlify/functions/delete_game`, {
         method: 'POST',
         headers: {
