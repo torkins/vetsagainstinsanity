@@ -30,7 +30,7 @@ class GameList extends React.Component {
                 let unfinished = gamelists[1];
                 this.setState({
                     pendingGamesLoaded: true, pendingGameList: pending,
-                    myGamesLoaded: true, myGameList: gameList
+                    myGamesLoaded: true, myGameList: unfinished
                 });
             },
             error => this.setState({pendingGamesLoaded: false, myGamesLoaded: false, error})
