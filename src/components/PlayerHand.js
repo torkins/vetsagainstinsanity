@@ -43,7 +43,7 @@ let createAnswerersDisplay = (gameState, allUserAnswers, onChooseWinner) => {
                 </>
             ) 
             :
-            ( <> </> );
+            ( <> <div class"waitingForAnswers twelve columns">Waiting for answers...</div>  </> );
     })
 
 };
