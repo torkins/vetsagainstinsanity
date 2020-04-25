@@ -144,7 +144,7 @@ class AnswererHand extends React.Component {
                     <button className="button-primary choiceConfirm twelve columns" onClick={onChooseAnswer}>Confirm Answer</button>
                 );
             } else {
-                <div className="twelve columns answerSubmitted">Answer Submitted!</div>
+                confirmArea = (<div className="twelve columns answerSubmitted">Answer Submitted!</div>);
             }
         } else {
             confirmArea = undefined;
