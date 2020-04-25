@@ -1,7 +1,7 @@
 
-input[type="button"]:disabled {
-    border: 1px solid grey;
-    background-color: grey;
+button[disabled] {
+    border: 1px solid grey !important;
+    background-color: grey !important;
 }
 
 .answerCard {
