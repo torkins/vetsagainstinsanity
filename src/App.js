@@ -88,7 +88,10 @@ class App extends React.Component {
         const { cookies } = this.props;
         cookies.set('selectedGameId', gameId, { path: '/' });
         if (gameId != null) {
-            fetchGameState(gameId).then(this.updateSelectedGame.bind(this));
+            fetchGameState(gameId).then(
+                this.updateSelectedGame.bind(this),
+                err => this.clearSelectedGame()
+            );
         }
     }
 
