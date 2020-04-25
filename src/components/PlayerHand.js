@@ -134,7 +134,7 @@ class AnswererHand extends React.Component {
         });
 
         let confirmArea = turnIsActive(gameState) ?
-            (sufficientAnswers ? (
+            (!sufficientAnswers ? (
                 <div>Please choose {requiredAnswers - this.state.unconfirmedAnswerIds.length} answers</div>
                 ) : (
                     <button className="button-primary choiceConfirm" onClick={onChooseAnswer}>Confirm Answer</button>
