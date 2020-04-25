@@ -14,7 +14,7 @@ let createAnswerersDisplay = (gameState, allUserAnswers) => {
         console.info(username + " selected " + selectedIds);
     }
 
-    return allUserAnswers.entries().map(entry => {
+    return Array.from(allUserAnswers.entries(), entry => {
         let [username, selectedIds] = entry;
         let selectedCards = selectedIds.map(selectedId => {
             let card = getAnswerCardFromId(gameState, selectedId);
