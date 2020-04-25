@@ -45,7 +45,7 @@ class AnswererHand extends React.Component {
     }
 
     removeUnconfirmedAnswer(cardId) {
-        if (card == null) {
+        if (cardId == null) {
             this.setState({
                 unconfirmedAnswerIds: []
             });
