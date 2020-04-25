@@ -55,7 +55,7 @@ class Game extends React.Component {
                         {isAdmin(gameState, userState) && !gameHasStarted(gameState) ? <StartGame onStartGame={this.props.onStartGame}/> : <></>}
                         <LeaveGame onLeaveGame={onLeaveGame} />
                         {(gameHasStarted(gameState) && turnIsOver(gameState)) ? 
-                            (isAdmin(gameState, userState) ? <NextTurn onNextTurn={this.props.onNextTurn}/> : <WaitingForNextTurn lastWinner={lastWinnerName} youWon={youWon}/>)
+                            (isAdmin(gameState, userState) ? <NextTurn onNextTurn={this.props.onNextTurn} lastWinner={lastWinnerName} youWon={youWon}/> : <WaitingForNextTurn lastWinner={lastWinnerName} youWon={youWon}/>)
                             :
                             <></>
                         }
@@ -77,6 +77,15 @@ class Game extends React.Component {
 const NextTurn = props => {
     return (
         <button className="button button-primary twelve columns" onClick={props.onNextTurn}>Next Turn</button>
+        if (props.youWon) {
+            return (
+                <div className="results twelve columns">Congratulations, you won this round! Click 'Next Turn' to start the next turn.</div>
+            );
+        } else {
+            return (
+                <div className="results twelve columns">{props.lastWinner} won this round, click 'Next Turn' to start the next turn.</div>
+            );
+        }
     );
 }
 
